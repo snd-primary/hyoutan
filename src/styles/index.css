@@ -1,0 +1,382 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Heroビュー */
+.hero {
+  height: 100vh;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('/api/placeholder/1200/800') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding-top: 60px;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-family: 'Kosugi Maru', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #8e1919;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin: 10px;
+}
+
+.btn:hover {
+  background-color: #6b1313;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #fff;
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 基本情報 */
+.info-section {
+  padding: 80px 0;
+  background-color: #f8f4e6;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.section-title h2 {
+  font-size: 36px;
+  display: inline-block;
+  padding: 0 20px;
+  background-color: #f8f4e6;
+  position: relative;
+  z-index: 1;
+  font-family: 'Kosugi Maru', sans-serif;
+  color: #8e1919;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #8e1919;
+  top: 50%;
+  left: 0;
+  z-index: 0;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.info-item {
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.info-item:hover {
+  transform: translateY(-10px);
+}
+
+.info-item h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #8e1919;
+  border-bottom: 2px dotted #ddd;
+  padding-bottom: 10px;
+  font-family: 'Kosugi Maru', sans-serif;
+}
+
+.info-item p {
+  margin-bottom: 10px;
+}
+
+.map-container {
+  margin-top: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 300px;
+}
+
+.map-placeholder {
+  background-color: #ddd;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #555;
+}
+
+/* メニュー */
+.menu-section {
+  padding: 80px 0;
+  background-color: #fff;
+}
+
+.menu-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.menu-tab {
+  padding: 10px 30px;
+  background-color: #f8f4e6;
+  border: 2px solid #8e1919;
+  color: #8e1919;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.menu-tab:first-child {
+  border-radius: 30px 0 0 30px;
+}
+
+.menu-tab:last-child {
+  border-radius: 0 30px 30px 0;
+}
+
+.menu-tab.active {
+  background-color: #8e1919;
+  color: #fff;
+}
+
+.menu-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.menu-category {
+  margin-bottom: 40px;
+}
+
+.menu-category h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #8e1919;
+  font-family: 'Kosugi Maru', sans-serif;
+  color: #8e1919;
+}
+
+.menu-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.menu-item {
+  background-color: #f8f4e6;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+}
+
+.menu-item-image {
+  height: 180px;
+  background-color: #ddd;
+  background-position: center;
+  background-size: cover;
+}
+
+.menu-item-info {
+  padding: 15px;
+}
+
+.menu-item-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.menu-item-price {
+  color: #8e1919;
+  font-weight: bold;
+}
+
+.menu-item-description {
+  font-size: 14px;
+  color: #666;
+  margin-top: 10px;
+}
+
+/* フッター */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 60px 0 30px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-column h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-column h3::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  background-color: #8e1919;
+  bottom: 0;
+  left: 0;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.social-icons {
+  display: flex;
+  margin-top: 20px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #555;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+}
+
+.social-icon:hover {
+  background-color: #8e1919;
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #555;
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* レスポンシブ設定 */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #8e1919;
+    padding: 20px;
+    transform: translateY(-150%);
+    transition: transform 0.3s;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  nav.active {
+    transform: translateY(0);
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .section-title h2 {
+    font-size: 28px;
+  }
+
+  .info-item {
+    padding: 20px;
+  }
+
+  .menu-tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-tab {
+    width: 80%;
+    margin-bottom: 10px;
+    border-radius: 30px !important;
+    text-align: center;
+  }
+}
