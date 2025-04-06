@@ -3,7 +3,7 @@ import type { Menu } from '@/types'
 //串とん以外のフードメニュー
 export const foodMenu: Menu = {
   id: 'foods',
-  title: 'フードメニュー',
+  title: '一品料理',
   content: {
     type: 'food',
     items: [
@@ -74,7 +74,7 @@ export const foodMenu: Menu = {
 //串とんメニュー
 export const kushiMenu: Menu = {
   id: 'kushi',
-  title: '串とん',
+  title: '串焼きメニュー',
   content: {
     type: 'food',
     items: [
@@ -126,7 +126,7 @@ export const kushiMenu: Menu = {
 
 export const DrinkMenu: Menu = {
   id: 'drink',
-  title: 'ドリンクメニュー',
+  title: 'お飲み物',
   content: {
     type: 'drink',
     brands: [
