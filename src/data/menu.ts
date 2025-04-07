@@ -1,4 +1,4 @@
-import type { Menu } from '@/types'
+import type { Menu } from '@/types/menu.ts'
 
 //串とん以外のフードメニュー
 export const foodMenu: Menu = {

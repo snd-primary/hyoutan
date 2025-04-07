@@ -1,106 +1,51 @@
-<!-- ヘッダーナビ -->
-<header class="bg-foreground text-background w-full grid-cols-2">
-  <div>
-    <a href="#" class="logo"
-      ><img src="/api/placeholder/40/40" alt="やきとん酒場" class="logo-image" />やきとん酒場</a
-    >
+---
+import { NavToggle } from './ui/NavToggle.tsx'
+
+export interface NavLink {
+  href: string
+  label: string
+}
+
+// ナビゲーションリンクのデータ
+const navLinks: NavLink[] = [
+  { href: '#info', label: '基本情報' },
+  { href: '#menu', label: 'メニュー' },
+  { href: '#access', label: 'アクセス' },
+  { href: 'tel:000-0000-0000', label: 'ご予約' },
+]
+---
+
+<header class="sticky top-0 left-0 w-full bg-foreground text-background py-4 shadow-md z-50">
+  <div class="container mx-auto px-4 flex justify-between items-center">
+    <a href="/" class="flex items-center text-xl font-bold">
+      <img
+        src="/api/placeholder/40/40"
+        alt="やきとん酒場"
+        class="h-10 mr-2 rounded border-2 border-background p-0.5 bg-white"
+      />
+      やきとん酒場
+    </a>
+
+    <!-- isDesktop: ナビゲーションメニュー -->
+    <nav id="nav-menu" class="hidden md:block">
+      <ul class="md:flex space-y-4 md:space-y-0 md:space-x-6">
+        {
+          navLinks.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="block relative pb-1 hover:text-primary transition-colors duration-300 after:content-['']
+            after:absolute after:w-0 after:h-0.5 after:bg-background after:bottom-0 after:left-0
+            hover:after:w-full after:transition-all after:duration-300"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <NavToggle client:idle />
   </div>
-  <div class="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <nav>
-    <ul>
-      <li><a href="#info">基本情報</a></li>
-      <li><a href="#menu">メニュー</a></li>
-      <li><a href="#access">アクセス</a></li>
-      <li><a href="tel:000-0000-0000">ご予約</a></li>
-    </ul>
-  </nav>
 </header>
-
-<style>
-  /* ヘッダーナビ */
-  /*   header {
-    background-color: #8e1919;
-    padding: 15px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  } */
-
-  /*   .header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Kosugi Maru', sans-serif;
-  }
-
-  .logo-image {
-    height: 40px;
-    margin-right: 10px;
-    border-radius: 4px;
-    border: 2px solid #fff;
-    background-color: #f8f4e6;
-    padding: 2px;
-  }
-
-  nav ul {
-    display: flex;
-    list-style: none;
-  }
-
-  nav ul li {
-    margin-left: 20px;
-  }
-
-  nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-    position: relative;
-    padding-bottom: 5px;
-  }
-
-  nav ul li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #fff;
-    transition: width 0.3s;
-  }
-
-  nav ul li a:hover::after {
-    width: 100%;
-  }
-
-  /* ハンバーガーメニュー（モバイル用） */
-  .menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    cursor: pointer;
-  }
-
-  .menu-toggle span {
-    height: 3px;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 10px;
-  }
-</style>
