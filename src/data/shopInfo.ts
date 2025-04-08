@@ -17,7 +17,7 @@
  */
 export interface InfoItem {
   title: string
-  content: string[]
+  contents: string[]
 }
 
 /**
@@ -38,20 +38,25 @@ export const basicInfoSection: InfoSectionData = {
   items: [
     {
       title: '営業時間',
-      content: [
+      contents: [
         '<strong>平日:</strong> 17:00 - 23:30（L.O. 23:00）',
-        '<strong>金土祝前日:</strong> 17:00 - 24:00（L.O. 23:30）',
-        '<strong>日祝日:</strong> 16:00 - 22:30（L.O. 22:00）',
-        '<strong>定休日:</strong> 毎週水曜日',
+        '<strong>定休日:</strong> 毎週日曜日,祝日',
       ],
     },
     {
       title: 'ご予約・お問い合わせ',
-      content: [
+      contents: [
         '<strong>電話番号:</strong> 000-0000-0000',
         '<strong>メール:</strong> info@yakiton-sakaba.com',
-        'ご予約はお電話にて承っております。',
-        '団体様のご利用もお気軽にご相談ください。',
+        '<p>ご予約はお電話にて承っております。 <br />団体様のご利用もお気軽にご相談ください。</p>',
+      ],
+    },
+    {
+      title: '店舗概要',
+      contents: [
+        '<strong>席数:</strong> カウンター7席、テーブル2組（4人掛け）',
+        '<strong>喫煙:</strong> 全席喫煙可',
+        '<strong>ご予算感:</strong> 3000~4000円程度',
       ],
     },
   ],
@@ -66,7 +71,7 @@ export const accessInfoSection: InfoSectionData = {
   items: [
     {
       title: '店舗情報',
-      content: [
+      contents: [
         '<strong>住所:</strong> 〒123-4567 東京都〇〇区△△町 0-0-0 □□ビル 1F',
         '<strong>最寄り駅:</strong> 〇〇線△△駅から徒歩5分',
       ],

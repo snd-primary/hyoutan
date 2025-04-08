@@ -1,5 +1,5 @@
 ---
-import { MenuMobile } from './ui/MenuMobile.tsx'
+import { MobileNav } from './ui/MobileNav.tsx'
 export interface NavLink {
   href: string
   label: string
@@ -38,6 +38,6 @@ const navLinks: NavLink[] = [
       </ul>
     </nav>
 
-    <MenuMobile navLinks={navLinks} client:load />
+    <MobileNav navLinks={navLinks} client:idle />
   </div>
 </header>

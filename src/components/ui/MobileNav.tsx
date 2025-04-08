@@ -25,7 +25,7 @@ const NavButton: React.FC<NavButtonProps> = ({ onClick, icon, ariaLabel }) => {
   )
 }
 
-export const MenuMobile: React.FC<Props> = ({ navLinks }) => {
+export const MobileNav: React.FC<Props> = ({ navLinks }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
 
   const openMenu = () => {
@@ -35,6 +35,15 @@ export const MenuMobile: React.FC<Props> = ({ navLinks }) => {
   const closeMenu = () => {
     setIsMenuOpen(() => false)
   }
+
+  //メニューオープン時、body要素のスクロールを抑止
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('overflow-hidden')
+    } else {
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [isMenuOpen])
 
   return (
     <>

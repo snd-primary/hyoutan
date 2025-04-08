@@ -1,180 +1,137 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Header from '../components/Header.astro'
-import HeroSection from '../components/sections/HeroSection.astro'
 import '../styles/index.css'
+import { basicInfoSection } from '@/data/shopInfo'
+import Section from '@/layouts/Section.astro'
+import { foods, yakiton } from '@/data/menu.ts'
+import MenuCategory from '@/components/ui/MenuCategory.astro'
 ---
 
 <Layout>
-  <div class="grid-cols-1 grid-rows-3">
-    <Header />
-    <main>
-      <HeroSection />
-      <!-- 基本情報 -->
-      <section class="info-section" id="info">
-        <div class="container">
-          <div class="section-title">
-            <h2>基本情報</h2>
-          </div>
-          <div class="info-grid">
-            <div class="info-item">
-              <h3>営業時間</h3>
-              <p><strong>平日:</strong> 17:00 - 23:30（L.O. 23:00）</p>
-              <p><strong>金土祝前日:</strong> 17:00 - 24:00（L.O. 23:30）</p>
-              <p><strong>日祝日:</strong> 16:00 - 22:30（L.O. 22:00）</p>
-              <p><strong>定休日:</strong> 毎週水曜日</p>
+  <main class="container mx-auto px-4">
+    <!-- 基本情報 -->
+    <Section id="info" title="基本情報">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr items-start">
+        {
+          basicInfoSection.items.map((item) => (
+            <div class="w-full h-full bg-background border border-primary rounded-2xl p-4 grid grid-cols-1 gap-4">
+              <h3 class="text-xl font-bold ">{item.title}</h3>
+              <ul>
+                {item.contents.map((content) => (
+                  <li set:html={content} />
+                ))}
+              </ul>
             </div>
-            <div class="info-item">
-              <h3>ご予約・お問い合わせ</h3>
-              <p><strong>電話番号:</strong> 000-0000-0000</p>
-              <p><strong>メール:</strong> info@yakiton-sakaba.com</p>
-              <p>ご予約はお電話にて承っております。</p>
-              <p>団体様のご利用もお気軽にご相談ください。</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- アクセス -->
-      <section class="info-section" id="access" style="background-color: #fff;">
-        <div class="container">
-          <div class="section-title">
-            <h2>アクセス</h2>
-          </div>
-          <div class="info-grid">
-            <div class="info-item">
-              <h3>店舗情報</h3>
-              <p><strong>住所:</strong> 〒123-4567 東京都〇〇区△△町 0-0-0 □□ビル 1F</p>
-              <p><strong>最寄り駅:</strong> 〇〇線△△駅から徒歩5分</p>
-              <div class="map-container">
-                <div class="map-placeholder">Google Maps エリア（実装時に埋め込み）</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- メニュー -->
-      <section class="menu-section" id="menu">
-        <div class="container">
-          <div class="section-title">
-            <h2>メニュー</h2>
-          </div>
-          <div class="menu-tabs">
-            <div class="menu-tab active">串焼きメニュー</div>
-            <div class="menu-tab">一品料理</div>
-            <div class="menu-tab">お飲み物</div>
-          </div>
-          <div class="menu-content">
-            <div class="menu-category">
-              <h3>おすすめやきとん</h3>
-              <div class="menu-items">
-                <div class="menu-item">
-                  <div class="menu-item-image"></div>
-                  <div class="menu-item-info">
-                    <div class="menu-item-title">豚ハラミ</div>
-                    <div class="menu-item-price">¥180</div>
-                    <div class="menu-item-description">
-                      ジューシーで味わい深いハラミを塩・タレからお選びいただけます
-                    </div>
-                  </div>
-                </div>
-                <div class="menu-item">
-                  <div class="menu-item-image"></div>
-                  <div class="menu-item-info">
-                    <div class="menu-item-title">豚カシラ</div>
-                    <div class="menu-item-price">¥180</div>
-                    <div class="menu-item-description">
-                      コリコリとした食感が特徴的な希少部位です
-                    </div>
-                  </div>
-                </div>
-                <div class="menu-item">
-                  <div class="menu-item-image"></div>
-                  <div class="menu-item-info">
-                    <div class="menu-item-title">豚タン</div>
-                    <div class="menu-item-price">¥200</div>
-                    <div class="menu-item-description">希少な豚タンを丁寧に焼き上げました</div>
-                  </div>
-                </div>
-                <div class="menu-item">
-                  <div class="menu-item-image"></div>
-                  <div class="menu-item-info">
-                    <div class="menu-item-title">豚ハツ</div>
-                    <div class="menu-item-price">¥180</div>
-                    <div class="menu-item-description">新鮮なハツを熟練の技で焼き上げます</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="menu-category">
-              <h3>当店自慢の日本酒</h3>
-              <div class="menu-items">
-                <div class="menu-item">
-                  <div class="menu-item-image"></div>
-                  <div class="menu-item-info">
-                    <div class="menu-item-title">獺祭 純米大吟醸</div>
-                    <div class="menu-item-price">¥800 / 1合</div>
-                    <div class="menu-item-description">
-                      山口県の有名酒蔵が作る、フルーティーな香りと上品な甘み
-                    </div>
-                  </div>
-                </div>
-                <div class="menu-item">
-                  <div class="menu-item-image"></div>
-                  <div class="menu-item-info">
-                    <div class="menu-item-title">十四代 特別本醸造</div>
-                    <div class="menu-item-price">¥1,200 / 1合</div>
-                    <div class="menu-item-description">山形県の希少銘柄。芳醇な味わいが特徴</div>
-                  </div>
-                </div>
-                <div class="menu-item">
-                  <div class="menu-item-image"></div>
-                  <div class="menu-item-info">
-                    <div class="menu-item-title">日本酒飲み比べセット</div>
-                    <div class="menu-item-price">¥1,500</div>
-                    <div class="menu-item-description">季節の3種をお楽しみいただけます</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-    <!-- フッター -->
-    <footer>
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-column">
-            <h3>やきとん酒場</h3>
-            <p>昭和の雰囲気が味わえる、やきとんと日本酒のお店です。</p>
-            <div class="social-icons">
-              <a href="#" class="social-icon">F</a>
-              <a href="#" class="social-icon">I</a>
-              <a href="#" class="social-icon">T</a>
-            </div>
-          </div>
-          <div class="footer-column">
-            <h3>リンク</h3>
-            <ul class="footer-links">
-              <li><a href="#info">基本情報</a></li>
-              <li><a href="#menu">メニュー</a></li>
-              <li><a href="#access">アクセス</a></li>
-              <li><a href="#">お問い合わせ</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h3>営業時間</h3>
-            <p><strong>平日:</strong> 17:00 - 23:30</p>
-            <p><strong>金土祝前日:</strong> 17:00 - 24:00</p>
-            <p><strong>日祝日:</strong> 16:00 - 22:30</p>
-            <p><strong>定休日:</strong> 毎週水曜日</p>
-          </div>
-        </div>
-        <div class="copyright">&copy; 2025 やきとん酒場 All Rights Reserved.</div>
+          ))
+        }
       </div>
-    </footer>
-  </div>
+    </Section>
+
+    <!-- アクセス -->
+    <Section id="access" title="アクセス">
+      <div class="info-grid">
+        <div class="info-item">
+          <h3>店舗情報</h3>
+          <p><strong>住所:</strong> 〒123-4567 東京都〇〇区△△町 0-0-0 □□ビル 1F</p>
+          <p><strong>最寄り駅:</strong> 〇〇線△△駅から徒歩5分</p>
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d260.9677655243392!2d133.33532607077836!3d35.43288113415353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f150!3m3!1m2!1s0x3556f785e9332955%3A0xe304ec2592395767!2z5Liy44Go44KT5Lqt5pel5pys6YWS6YWS5aC05LiJ5Luj55uu44Gy44KH44GG44Gf44KT!5e0!3m2!1sja!2sjp!4v1744096017161!5m2!1sja!2sjp"
+              class="w-full h-full aspect-square md:aspect-video"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </Section>
+
+    <!-- メニュー -->
+    <Section id="menu" title="メニュー">
+      <div class="menu-tabs">
+        <div class="menu-tab active">やきとんメニュー</div>
+        <div class="menu-tab">一品料理</div>
+        <div class="menu-tab">お飲み物</div>
+      </div>
+      <div class="menu-content">
+        <MenuCategory title="おすすめやきとん">
+          <div class="menu-items">
+            {
+              yakiton.content.type === 'food' &&
+                yakiton.content.items.map((item) => (
+                  <div class="menu-item">
+                    {/* <!-- <div class="menu-item-image"></div> --> */}
+                    <div class="menu-item-info">
+                      <div class="menu-item-title">{item.name}</div>
+                      {/* <div class="menu-item-price">￥390</div> */}
+                      <div class="menu-item-description">{item.description}</div>
+                    </div>
+                  </div>
+                ))
+            }
+          </div>
+        </MenuCategory>
+
+        <MenuCategory title="一品料理">
+          <div class="menu-items">
+            {
+              foods.content.type === 'food' &&
+                foods.content.items.map((item) => (
+                  <div class="menu-item">
+                    {/* <!-- <div class="menu-item-image"></div> --> */}
+                    <div class="menu-item-info">
+                      <div class="menu-item-title">{item.name}</div>
+                      {typeof item.price === 'number' && (
+                        <div class="menu-item-price">{Math.floor(item.price * 1.1)}円（税込）</div>
+                      )}
+                      <div class="menu-item-description">{item.description}</div>
+                    </div>
+                  </div>
+                ))
+            }
+          </div>
+        </MenuCategory>
+
+        <MenuCategory title="日本酒">
+          <div class="menu-items">
+            {}
+            <div class="menu-item">
+              <div class="menu-item-image"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">獺祭 純米大吟醸</div>
+                <div class="menu-item-price">¥800 / 1合</div>
+                <div class="menu-item-description">
+                  山口県の有名酒蔵が作る、フルーティーな香りと上品な甘み
+                </div>
+              </div>
+            </div>
+          </div>
+        </MenuCategory>
+
+        <div class="menu-category">
+          <h3>当店自慢の日本酒</h3>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div class="menu-item-image"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">十四代 特別本醸造</div>
+                <div class="menu-item-price">¥1,200 / 1合</div>
+                <div class="menu-item-description">山形県の希少銘柄。芳醇な味わいが特徴</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-image"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">日本酒飲み比べセット</div>
+                <div class="menu-item-price">¥1,500</div>
+                <div class="menu-item-description">季節の3種をお楽しみいただけます</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Section>
+  </main>
+  <!-- フッター -->
 </Layout>

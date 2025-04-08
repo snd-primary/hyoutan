@@ -1,7 +1,7 @@
 import type { Menu } from '@/types/menu.ts'
 
 //串とん以外のフードメニュー
-export const foodMenu: Menu = {
+export const foods: Menu = {
   id: 'foods',
   title: '一品料理',
   content: {
@@ -72,61 +72,92 @@ export const foodMenu: Menu = {
 }
 
 //串とんメニュー
-export const kushiMenu: Menu = {
-  id: 'kushi',
-  title: '串焼きメニュー',
+export const yakiton: Menu = {
+  id: 'yakitoxn',
+  title: 'やきとんメニュー',
   content: {
     type: 'food',
     items: [
       {
         name: '豚バラ',
+        description: 'ジューシーな脂と柔らかい肉質が特徴の定番部位',
       },
       {
         name: '豚タン',
+        description: 'コリコリとした食感が楽しめる希少部位',
       },
       {
         name: '豚テッチャン',
+        description: '弾力のある食感と旨味が詰まった小腸部位',
       },
       {
         name: '豚ハラミ',
+        description: '横隔膜の部位で柔らかく濃厚な旨味が特徴',
       },
       {
         name: 'コブクロ',
+        description: '豚の子宮。独特の食感と風味が楽しめる珍味',
       },
       {
         name: 'カシラ',
+        description: '豚の頬肉で濃厚な味と適度な歯ごたえが魅力',
       },
       {
         name: 'ハツ',
+        description: '豚の心臓。程よい弾力と濃厚な味わい',
       },
       {
         name: 'レバー',
+        description: '鉄分豊富な豚レバー。滑らかな舌触りが特徴',
       },
       {
         name: 'ネック',
+        description: '首周りの肉で旨味が強く、独特の食感を楽しめる',
       },
       {
-        name: '？',
+        name: 'ノド',
+        description: '程よい歯ごたえと独特の風味がある喉の部分',
       },
       {
         name: '自家製つくね',
+        description: '挽き肉と秘伝のスパイスで作る、ふっくら食感のつくね',
       },
       {
         name: '激辛ソーセージ',
+        description: '辛さ好きにはたまらない特製唐辛子入りソーセージ',
       },
       {
         name: 'アスパラベーコン',
+        description: '新鮮なアスパラをベーコンで巻いた人気の一品',
       },
       {
         name: 'チーズベーコン',
+        description: 'とろけるチーズとベーコンの相性抜群の組み合わせ',
       },
     ],
   },
 }
 
-export const DrinkMenu: Menu = {
+export const drink = {
   id: 'drink',
-  title: 'お飲み物',
+  title: 'ドリンク',
+  content: {
+    type: 'drink',
+    categories: [
+      {
+        category: 'ハイボール',
+        items: [
+          { name: '角ハイボール', price: 500 },
+          { name: '角瓶ボトルキープ', price: 4500 },
+        ],
+      },
+    ],
+  },
+}
+
+export const sake: Menu = {
+  id: 'sake',
+  title: '日本酒',
   content: {
     type: 'drink',
     brands: [
