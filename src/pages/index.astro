@@ -5,6 +5,7 @@ import { basicInfoSection } from '@/data/shopInfo'
 import Section from '@/layouts/Section.astro'
 import { foods, yakiton } from '@/data/menu.ts'
 import MenuCategory from '@/components/ui/MenuCategory.astro'
+import { drink, sake } from '@/data/menu.ts'
 ---
 
 <Layout>
@@ -58,17 +59,16 @@ import MenuCategory from '@/components/ui/MenuCategory.astro'
         <MenuCategory title="おすすめやきとん">
           <div class="menu-items">
             {
-              yakiton.content.type === 'food' &&
-                yakiton.content.items.map((item) => (
-                  <div class="menu-item">
-                    {/* <!-- <div class="menu-item-image"></div> --> */}
-                    <div class="menu-item-info">
-                      <div class="menu-item-title">{item.name}</div>
-                      {/* <div class="menu-item-price">￥390</div> */}
-                      <div class="menu-item-description">{item.description}</div>
-                    </div>
+              yakiton.contents.map((item) => (
+                <div class="menu-item">
+                  {/* <!-- <div class="menu-item-image"></div> --> */}
+                  <div class="menu-item-info">
+                    <div class="menu-item-title">{item.name}</div>
+                    {/* <div class="menu-item-price">￥390</div> */}
+                    <div class="menu-item-description">{item.description}</div>
                   </div>
-                ))
+                </div>
+              ))
             }
           </div>
         </MenuCategory>
@@ -76,60 +76,65 @@ import MenuCategory from '@/components/ui/MenuCategory.astro'
         <MenuCategory title="一品料理">
           <div class="menu-items">
             {
-              foods.content.type === 'food' &&
-                foods.content.items.map((item) => (
-                  <div class="menu-item">
-                    {/* <!-- <div class="menu-item-image"></div> --> */}
-                    <div class="menu-item-info">
-                      <div class="menu-item-title">{item.name}</div>
-                      {typeof item.price === 'number' && (
-                        <div class="menu-item-price">{Math.floor(item.price * 1.1)}円（税込）</div>
-                      )}
-                      <div class="menu-item-description">{item.description}</div>
-                    </div>
+              foods.contents.map((item) => (
+                <div class="menu-item">
+                  {/* <!-- <div class="menu-item-image"></div> --> */}
+                  <div class="menu-item-info">
+                    <div class="menu-item-title">{item.name}</div>
+                    {typeof item.price === 'number' && (
+                      <div class="menu-item-price">{Math.floor(item.price * 1.1)}円（税込）</div>
+                    )}
+                    <div class="menu-item-description">{item.description}</div>
                   </div>
-                ))
+                </div>
+              ))
+            }
+          </div>
+        </MenuCategory>
+
+        <MenuCategory title="お飲み物">
+          <div class="menu-items">
+            {
+              drink.contents.map((content) => (
+                <div class="menu-item">
+                  <div class="menu-item-title">{content.category}</div>
+                  <ul>
+                    {content.items.map((item) => (
+                      <li>
+                        <span>{item.name}</span>
+                        <span>{item.price}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
             }
           </div>
         </MenuCategory>
 
         <MenuCategory title="日本酒">
           <div class="menu-items">
-            {}
-            <div class="menu-item">
-              <div class="menu-item-image"></div>
-              <div class="menu-item-info">
-                <div class="menu-item-title">獺祭 純米大吟醸</div>
-                <div class="menu-item-price">¥800 / 1合</div>
-                <div class="menu-item-description">
-                  山口県の有名酒蔵が作る、フルーティーな香りと上品な甘み
+            {
+              sake.contents.map((content) => (
+                <div class="menu-item">
+                  <div class="menu-item-info">
+                    <div class="menu-item-title">{content.brand}</div>
+                    <div class="menu-item-title">{content.prefecture}</div>
+                    <ul>
+                      {content.items.map((item) => (
+                        <li>
+                          <span>{item.name}</span>
+                          <span>{item.price}</span>
+                          <span>{item.description}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </div>
+              ))
+            }
           </div>
         </MenuCategory>
-
-        <div class="menu-category">
-          <h3>当店自慢の日本酒</h3>
-          <div class="menu-items">
-            <div class="menu-item">
-              <div class="menu-item-image"></div>
-              <div class="menu-item-info">
-                <div class="menu-item-title">十四代 特別本醸造</div>
-                <div class="menu-item-price">¥1,200 / 1合</div>
-                <div class="menu-item-description">山形県の希少銘柄。芳醇な味わいが特徴</div>
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="menu-item-image"></div>
-              <div class="menu-item-info">
-                <div class="menu-item-title">日本酒飲み比べセット</div>
-                <div class="menu-item-price">¥1,500</div>
-                <div class="menu-item-description">季節の3種をお楽しみいただけます</div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </Section>
   </main>

@@ -1,27 +1,28 @@
-export interface FoodItem {
+//メニューアイテムの基本形
+export interface MenuItem {
   name: string
   price?: number
   description?: string
 }
 
-export interface DrinkItem {
-  name: string
-  price?: number
-  description?: string
-}
-
-export interface DrinkBrand {
+export interface SakeGroup {
   brand: string
   prefecture: string
-  items: DrinkItem[]
+  items: MenuItem[]
 }
 
-export type MenuItemType =
-  | { type: 'food'; items: FoodItem[] }
-  | { type: 'drink'; brands: DrinkBrand[] }
+export interface CategoryGroup {
+  category: string
+  items: MenuItem[]
+}
 
-export interface Menu {
-  id: string
+export interface MenuSection<T> {
   title: string
-  content: MenuItemType
+  contents: T[]
 }
+
+export type FoodMenu = MenuSection<MenuItem>
+export type DrinkMenu = MenuSection<CategoryGroup>
+export type SakeMenu = MenuSection<SakeGroup>
+
+export type Menu = FoodMenu | DrinkMenu | SakeMenu
