@@ -1,39 +1,65 @@
+import type React from 'react'
 import type { NavLink } from '../Header.astro'
+import { useEffect, useState } from 'react'
+import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons'
 
 type Props = {
   navLinks: NavLink[]
-  isMenuOpen: boolean
 }
 
-export const MenuMobile: React.FC<Props> = ({ navLinks, isMenuOpen }) => {
+type NavButtonProps = {
+  onClick: () => void
+  icon: React.ReactNode
+  ariaLabel: string
+}
+
+const NavButton: React.FC<NavButtonProps> = ({ onClick, icon, ariaLabel }) => {
   return (
-    <div
-      id="mobile-menu"
-      className={`fixed inset-0 bg-foreground/95 z-50 transform transition-transform duration-300 md:hidden ${isMenuOpen ? '' : '-translate-y-full'}`}
+    <button
+      className="md:hidden p-1 hover:bg-foreground/80 rounded-md transition-colors"
+      aria-label={ariaLabel}
+      onClick={onClick}
     >
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex justify-between items-center mb-8">
+      {icon}
+    </button>
+  )
+}
+
+export const MenuMobile: React.FC<Props> = ({ navLinks }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+
+  const openMenu = () => {
+    setIsMenuOpen(() => true)
+  }
+
+  const closeMenu = () => {
+    setIsMenuOpen(() => false)
+  }
+
+  return (
+    <>
+      <NavButton onClick={openMenu} ariaLabel="メニューを開く" icon={<HamburgerMenuIcon />} />
+      <div
+        className={`fixed inset-0 bg-foreground/95 z-50 transform transition-transform duration-300 md:hidden  grid grid-cols-1 w-full h-dvh items-start ${isMenuOpen ? '' : '-translate-y-full'}`}
+      >
+        <div className="flex justify-between items-center mb-8 p-4">
           <a href="/" className="flex items-center text-xl font-bold">
-            <img
-              src="/api/placeholder/40/40"
-              alt="やきとん酒場"
-              className="h-10 mr-2 rounded border-2 border-background p-0.5 bg-white"
-            />
             やきとん酒場
           </a>
+          <NavButton onClick={closeMenu} ariaLabel="メニューを閉じる" icon={<Cross1Icon />} />
         </div>
-        <nav>
-          <ul className="space-y-6 text-center text-xl">
-            {navLinks.map((link) => (
-              <li>
-                <a href={link.href} className="block py-2 hover:text-primary transition-colors">
-                  {link.label}
+        <div role="navigation" className="block">
+          <ul className="block">
+            {navLinks.map((item) => (
+              <li key={item.label}>
+                <a href={item.href} className="block py-2 hover:text-primary transition-colors">
+                  {item.label}
                 </a>
               </li>
             ))}
           </ul>
-        </nav>
+        </div>
       </div>
-    </div>
+    </>
   )
 }

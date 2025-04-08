@@ -1,6 +1,5 @@
 ---
-import { NavToggle } from './ui/NavToggle.tsx'
-
+import { MenuMobile } from './ui/MenuMobile.tsx'
 export interface NavLink {
   href: string
   label: string
@@ -17,14 +16,7 @@ const navLinks: NavLink[] = [
 
 <header class="sticky top-0 left-0 w-full bg-foreground text-background py-4 shadow-md z-50">
   <div class="container mx-auto px-4 flex justify-between items-center">
-    <a href="/" class="flex items-center text-xl font-bold">
-      <img
-        src="/api/placeholder/40/40"
-        alt="やきとん酒場"
-        class="h-10 mr-2 rounded border-2 border-background p-0.5 bg-white"
-      />
-      やきとん酒場
-    </a>
+    <a href="/" class="flex items-center text-xl font-bold"> やきとん酒場 </a>
 
     <!-- isDesktop: ナビゲーションメニュー -->
     <nav id="nav-menu" class="hidden md:block">
@@ -46,6 +38,6 @@ const navLinks: NavLink[] = [
       </ul>
     </nav>
 
-    <NavToggle client:idle />
+    <MenuMobile navLinks={navLinks} client:load />
   </div>
 </header>
