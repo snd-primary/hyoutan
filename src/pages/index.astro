@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro'
 import '../styles/index.css'
 import { basicInfoSection } from '@/data/shopInfo'
 import Section from '@/layouts/Section.astro'
-import { foods, menuTitles, yakiton } from '@/data/menu.ts'
+import { foods, yakiton } from '@/data/menu.ts'
 import MenuCategory from '@/components/ui/MenuCategory.astro'
 import { drink, sake } from '@/data/menu.ts'
 import { snsLinks } from '@/data/sns-links.ts'
@@ -64,7 +64,7 @@ import { MenuNav } from '@/components/ui/MenuNav.tsx'
     </Section>
 
     <!-- メニュー -->
-    <Section id="menu" title="メニュー" class="@container scroll-pt-120">
+    <Section id="menu" title="メニュー" class="@container">
       <MenuNav client:load />
       <div class="menu-content">
         <MenuCategory title={yakiton.title} id={`${yakiton.title}`}>

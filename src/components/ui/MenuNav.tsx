@@ -23,7 +23,7 @@ export const MenuNav: React.FC = () => {
   }
 
   return (
-    <div className="sticky top-20 left-0 w-full mx-auto grid place-items-center z-50">
+    <div className="sticky top-20 left-0 w-full mx-auto grid place-items-center z-50 ">
       <nav className="grid grid-cols-4 grid-rows-1 w-2xl bg-primary h-16 place-content-center place-items-center gap-0.5 p-0.5 rounded-4xl">
         {menuEntries.map(([key, title], i) => (
           <a

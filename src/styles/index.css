@@ -180,6 +180,7 @@
 .menu-content {
   max-width: 900px;
   margin: 0 auto;
+  scroll-padding-top: 200px;
 }
 
 .menu-category {
