@@ -125,3 +125,4 @@
 4.  `npm run dev` (または `yarn dev`, `pnpm dev`)
 
 ---
+あいうえお
