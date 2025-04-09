@@ -1,8 +1,15 @@
 import type { DrinkMenu, FoodMenu, SakeMenu } from '@/types/menu.ts'
 
+export const menuTitles = {
+  foods: '一品料理',
+  yakiton: 'やきとん',
+  sake: '日本酒',
+  drink: 'お飲み物',
+}
+
 //串とん以外のフードメニュー
 export const foods: FoodMenu = {
-  title: '一品料理',
+  title: menuTitles.foods,
   contents: [
     {
       name: '牛すじ煮込み',
@@ -69,7 +76,7 @@ export const foods: FoodMenu = {
 
 //串とんメニュー
 export const yakiton: FoodMenu = {
-  title: 'やきとんメニュー',
+  title: menuTitles.yakiton,
   contents: [
     {
       name: '豚バラ',
@@ -130,8 +137,9 @@ export const yakiton: FoodMenu = {
   ],
 }
 
+//ドリンク(日本酒以外)
 export const drink: DrinkMenu = {
-  title: 'ドリンク',
+  title: menuTitles.drink,
   contents: [
     {
       category: 'ハイボール',
@@ -195,8 +203,9 @@ export const drink: DrinkMenu = {
   ],
 }
 
+//日本酒
 export const sake: SakeMenu = {
-  title: '日本酒',
+  title: menuTitles.sake,
   contents: [
     {
       brand: '黒竜',

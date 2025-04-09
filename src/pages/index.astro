@@ -3,9 +3,10 @@ import Layout from '../layouts/Layout.astro'
 import '../styles/index.css'
 import { basicInfoSection } from '@/data/shopInfo'
 import Section from '@/layouts/Section.astro'
-import { foods, yakiton } from '@/data/menu.ts'
+import { foods, menuTitles, yakiton } from '@/data/menu.ts'
 import MenuCategory from '@/components/ui/MenuCategory.astro'
 import { drink, sake } from '@/data/menu.ts'
+import { snsLinks } from '@/data/sns-links.ts'
 ---
 
 <Layout>
@@ -48,23 +49,43 @@ import { drink, sake } from '@/data/menu.ts'
       </div>
     </Section>
 
+    <Section id="sns" title="SNS LINK">
+      <div class="info-grid">
+        {
+          snsLinks.map((link) => (
+            <a href={link.url} class="sns-link" target="_blank" rel="noopener noreferrer">
+              <div class="sns-icon">{link.icon}</div>
+              <span class="sns-name">{link.name}</span>
+            </a>
+          ))
+        }
+      </div>
+    </Section>
+
     <!-- メニュー -->
     <Section id="menu" title="メニュー">
-      <div class="menu-tabs">
-        <div class="menu-tab active">やきとんメニュー</div>
-        <div class="menu-tab">一品料理</div>
-        <div class="menu-tab">お飲み物</div>
-      </div>
+      <nav
+        class="grid grid-cols-4 grid-rows-1 w-2xl bg-primary h-16 place-content-center place-items-center gap-0.5 p-0.5 rounded-4xl"
+      >
+        {
+          Object.values(menuTitles).map((title) => (
+            <a
+              href={`#${title}`}
+              class="w-full h-full bg-accent grid place-content-center nth-[1]:rounded-s-4xl nth-last-[1]:rounded-e-4xl hover:bg-primary"
+            >
+              {title}
+            </a>
+          ))
+        }
+      </nav>
       <div class="menu-content">
-        <MenuCategory title="おすすめやきとん">
+        <MenuCategory title={yakiton.title} id={`${yakiton.title}`}>
           <div class="menu-items">
             {
               yakiton.contents.map((item) => (
                 <div class="menu-item">
-                  {/* <!-- <div class="menu-item-image"></div> --> */}
                   <div class="menu-item-info">
                     <div class="menu-item-title">{item.name}</div>
-                    {/* <div class="menu-item-price">￥390</div> */}
                     <div class="menu-item-description">{item.description}</div>
                   </div>
                 </div>
@@ -73,12 +94,11 @@ import { drink, sake } from '@/data/menu.ts'
           </div>
         </MenuCategory>
 
-        <MenuCategory title="一品料理">
+        <MenuCategory title={foods.title} id={`${foods.title}`}>
           <div class="menu-items">
             {
               foods.contents.map((item) => (
                 <div class="menu-item">
-                  {/* <!-- <div class="menu-item-image"></div> --> */}
                   <div class="menu-item-info">
                     <div class="menu-item-title">{item.name}</div>
                     {typeof item.price === 'number' && (
@@ -92,7 +112,7 @@ import { drink, sake } from '@/data/menu.ts'
           </div>
         </MenuCategory>
 
-        <MenuCategory title="お飲み物">
+        <MenuCategory title={drink.title} id={`${drink.title}`}>
           <div class="menu-items">
             {
               drink.contents.map((content) => (
@@ -112,7 +132,7 @@ import { drink, sake } from '@/data/menu.ts'
           </div>
         </MenuCategory>
 
-        <MenuCategory title="日本酒">
+        <MenuCategory title={sake.title} id={`${sake.title}`}>
           <div class="menu-items">
             {
               sake.contents.map((content) => (
@@ -138,5 +158,4 @@ import { drink, sake } from '@/data/menu.ts'
       </div>
     </Section>
   </main>
-  <!-- フッター -->
 </Layout>

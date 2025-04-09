@@ -73,4 +73,6 @@
 html {
   font-size: 15px;
   font-family: 'Noto Sans JP', sans-serif;
+  scroll-padding-top: 70px;
+  scroll-behavior: smooth;
 }
