@@ -7,6 +7,7 @@ import { foods, menuTitles, yakiton } from '@/data/menu.ts'
 import MenuCategory from '@/components/ui/MenuCategory.astro'
 import { drink, sake } from '@/data/menu.ts'
 import { snsLinks } from '@/data/sns-links.ts'
+import { MenuNav } from '@/components/ui/MenuNav.tsx'
 ---
 
 <Layout>
@@ -64,20 +65,7 @@ import { snsLinks } from '@/data/sns-links.ts'
 
     <!-- メニュー -->
     <Section id="menu" title="メニュー">
-      <nav
-        class="grid grid-cols-4 grid-rows-1 w-2xl bg-primary h-16 place-content-center place-items-center gap-0.5 p-0.5 rounded-4xl"
-      >
-        {
-          Object.values(menuTitles).map((title) => (
-            <a
-              href={`#${title}`}
-              class="w-full h-full bg-accent grid place-content-center nth-[1]:rounded-s-4xl nth-last-[1]:rounded-e-4xl hover:bg-primary"
-            >
-              {title}
-            </a>
-          ))
-        }
-      </nav>
+      <MenuNav client:load />
       <div class="menu-content">
         <MenuCategory title={yakiton.title} id={`${yakiton.title}`}>
           <div class="menu-items">
