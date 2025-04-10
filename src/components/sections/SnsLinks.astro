@@ -1,0 +1,41 @@
+---
+import type { ImageMetadata } from 'astro'
+import instagramLogo from '../../assets/logo/brandlogo-instagram.png'
+import lineLogo from '../../assets/logo/brandlogo-line.png'
+import xLogo from '../../assets/logo/brandlogo-x.png'
+import { snsLinks } from '@/data/snslinks.ts'
+import { Image } from 'astro:assets'
+
+interface LogoMap {
+  [key: string]: ImageMetadata
+}
+
+const logoMap: LogoMap = {
+  Instagram: instagramLogo,
+  X: xLogo,
+  LINE: lineLogo,
+}
+---
+
+<div class="info-grid">
+  {
+    snsLinks.map((link) => {
+      const logo = logoMap[link.name]
+
+      return (
+        <a
+          href={link.url}
+          class="sns-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={link.ariaLabel}
+        >
+          <div class="sns-icon">
+            {logo && <Image src={logo} alt={link.ariaLabel} width={50} height={50} />}
+          </div>
+          <span class="sns-name">{link.name}</span>
+        </a>
+      )
+    })
+  }
+</div>

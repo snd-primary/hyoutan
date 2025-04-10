@@ -1,4 +1,33 @@
-import { getImage } from 'astro:assets'
+export interface SnsLink {
+  name: string
+  url: string
+  ariaLabel: string
+}
+
+export const snsLinks: SnsLink[] = [
+  {
+    name: 'Instagram',
+    url: 'https://www.instagram.com/yakiton-sakaba',
+    ariaLabel: '三代目ひょうたん公式Instagram',
+  },
+  {
+    name: 'X',
+    url: 'https://x.com/yakiton-sakaba',
+    ariaLabel: '三代目ひょうたん公式X',
+  },
+  {
+    name: 'LINE',
+    url: 'https://line.me/yakiton-sakaba',
+    ariaLabel: '三代目ひょうたん公式LINE',
+  },
+]
+
+///////////////////////////
+// ↓ OLD たぶん消す↓
+// getImageの使い方知りたくて実装しただけ。
+///////////////////////////
+
+/* import { getImage } from 'astro:assets'
 import type { GetImageResult } from 'astro'
 
 import instagramLogo from '../assets/logo/brandlogo-instagram.png'
@@ -36,3 +65,4 @@ export const snsLinks: SnsLink[] = [
     optimizedSrc: getImage({ src: lineLogo }),
   },
 ]
+ */
