@@ -6,8 +6,9 @@ import Section from '@/layouts/Section.astro'
 import { foods, yakiton } from '@/data/menu.ts'
 import MenuCategory from '@/components/ui/MenuCategory.astro'
 import { drink, sake } from '@/data/menu.ts'
-import { snsLinks } from '@/data/sns-links.ts'
 import { MenuNav } from '@/components/ui/MenuNav.tsx'
+import { snsLinks } from '@/data/snslinks'
+import { Image } from 'astro:assets'
 ---
 
 <Layout>
@@ -50,12 +51,26 @@ import { MenuNav } from '@/components/ui/MenuNav.tsx'
       </div>
     </Section>
 
+    <!-- SNS -->
     <Section id="sns" title="SNS LINK">
       <div class="info-grid">
         {
-          snsLinks.map((link) => (
-            <a href={link.url} class="sns-link" target="_blank" rel="noopener noreferrer">
-              <div class="sns-icon">{link.icon}</div>
+          snsLinks.map(async (link) => (
+            <a
+              href={link.url}
+              class="sns-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.ariaLabel}
+            >
+              <div class="sns-icon">
+                <Image
+                  src={(await link.optimizedSrc).src}
+                  alt={link.ariaLabel}
+                  width={100}
+                  height={100}
+                />
+              </div>
               <span class="sns-name">{link.name}</span>
             </a>
           ))

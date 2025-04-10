@@ -1,17 +1,6 @@
 ---
+import { navLinks } from '@/data/navlinks'
 import { MobileNav } from './ui/MobileNav.tsx'
-export interface NavLink {
-  href: string
-  label: string
-}
-
-// ナビゲーションリンクのデータ
-const navLinks: NavLink[] = [
-  { href: '#info', label: '基本情報' },
-  { href: '#menu', label: 'メニュー' },
-  { href: '#access', label: 'アクセス' },
-  { href: 'tel:000-0000-0000', label: 'ご予約' },
-]
 ---
 
 <header class="sticky top-0 left-0 w-full bg-foreground text-background py-4 shadow-md z-50">
