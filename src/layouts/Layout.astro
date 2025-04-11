@@ -4,6 +4,7 @@ import '../styles/global.css'
 import Footer from '@/components/Footer.astro'
 import HeroSection from '@/components/sections/HeroSection.astro'
 import { ScrollHandler } from '@/components/ScrollHandler'
+import { siteUrl, siteMeta } from '@/data/site'
 ---
 
 <!doctype html>
@@ -11,9 +12,15 @@ import { ScrollHandler } from '@/components/ScrollHandler'
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta property="og:description" content={siteMeta.description} />
+    <meta property="og:site_name" content={siteMeta.title} />
+    <meta property="og:url" content={siteUrl.root} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ja_JP" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>{siteMeta.title}</title>
   </head>
   <body>
     <div class="grid-cols-1 grid-rows-3">
