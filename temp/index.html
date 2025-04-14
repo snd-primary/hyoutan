@@ -1,164 +1,57 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sticky要素とScroll Timelineの組み合わせ</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Arial', sans-serif;
-        color: #333;
-      }
-
-      .container {
-        height: 300vh; /* スクロールのための十分な高さ */
-        scroll-timeline: --pageScroll block;
-        overflow-y: auto;
-        background-color: red;
-      }
-
-      .section {
-        background-color: blue;
-        height: 100vh;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      .section:nth-child(odd) {
-        background-color: #f5f7fa;
-      }
-
-      .section:nth-child(even) {
-        background-color: #e3e8f0;
-      }
-
-      .sticky-container {
-        position: relative;
-        height: 200vh; /* sticky要素のためのスクロール領域 */
-        background-color: green;
-      }
-
-      .sticky-element {
-        position: sticky;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 80%;
-        max-width: 500px;
-        height: 300px;
-        margin: 0 auto;
-        background-color: #4a69bd;
-        border-radius: 10px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-size: 1.8rem;
-        text-align: center;
-        padding: 20px;
-
-        /* アニメーションを設定 */
-        animation: sticky-animation linear;
-        animation-timeline: --pageScroll;
-        animation-range: contain;
-      }
-
-      @keyframes sticky-animation {
-        0% {
-          background-color: #4a69bd;
-          transform: translateY(-50%) scale(0.8) rotate(-5deg);
-          border-radius: 10px;
-        }
-
-        50% {
-          background-color: #e84393;
-          transform: translateY(-50%) scale(1.2) rotate(0deg);
-          border-radius: 50%;
-        }
-
-        100% {
-          background-color: #6ab04c;
-          transform: translateY(-50%) scale(0.8) rotate(5deg);
-          border-radius: 10px;
-        }
-      }
-
-      .header,
-      .footer {
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 20px;
-      }
-
-      .header {
-        background: linear-gradient(to bottom, #a1c4fd, #c2e9fb);
-      }
-
-      .footer {
-        background: linear-gradient(to top, #a1c4fd, #c2e9fb);
-      }
-
-      h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-      }
-
-      p {
-        font-size: 1.2rem;
-        max-width: 800px;
-        margin: 0 auto;
-        line-height: 1.6;
-      }
-
-      .instructions {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        background: rgba(255, 255, 255, 0.9);
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        z-index: 100;
-        max-width: 250px;
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
   </head>
   <body>
-    <div class="container">
-      <div class="instructions">
-        <p>下にスクロールして、固定された要素のアニメーションを確認してください。</p>
-      </div>
-
-      <div class="header">
-        <div>
-          <h1>Sticky要素とScroll Timelineの組み合わせ</h1>
-          <p>
-            このデモは、position: stickyとCSS Scroll-driven
-            Animationsを組み合わせた例です。下にスクロールすると、中央に固定された要素がスクロール位置に応じてアニメーションします。
-          </p>
+    <header>
+      <div class="island__container">
+        <div class="island">
+          <div class="island__bar"></div>
+          <div class="avatar">
+            <img
+              src="https://assets.codepen.io/605876/cropped-headshot--saturated-low-res.jpg"
+              alt="Your avatar"
+            />
+          </div>
         </div>
       </div>
+      <h1>Your Name.</h1>
+    </header>
 
-      <div class="sticky-container">
-        <div class="sticky-element">スクロールに応じて変化する<br />Sticky要素</div>
-      </div>
-
-      <div class="footer">
-        <div>
-          <h1>アニメーションの仕組み</h1>
-          <p>
-            この要素は「position:
-            sticky」で画面の中央に固定されています。同時に「animation-timeline」プロパティを使用して、スクロール位置に基づいたアニメーションを適用しています。要素の色、サイズ、回転、形状がスクロールに応じて変化します。
-          </p>
-        </div>
-      </div>
-    </div>
+    <svg
+      width="0"
+      height="0"
+      class="sr-only"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.1"
+    >
+      <defs>
+        <filter id="old-goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix
+            in="blur"
+            mode="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+            result="goo"
+          />
+          <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
+        <filter id="fancy-goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix
+            in="blur"
+            mode="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+            result="goo"
+          />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+        </filter>
+      </defs>
+    </svg>
   </body>
 </html>

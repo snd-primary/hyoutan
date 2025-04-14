@@ -1,14 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import '../styles/index.css'
-import '../styles/scroll-timeline.css'
-import { basicInfoSection } from '@/data/shopInfo'
-import Section from '@/layouts/Section.astro'
-import { foods, yakiton } from '@/data/menu.ts'
-import MenuCategory from '@/components/ui/MenuCategory.astro'
-import { drink, sake } from '@/data/menu.ts'
-import { MenuNav } from '@/components/ui/MenuNav.tsx'
-import SnsLinks from '@/components/sections/SnsLinks.astro'
+import Layout from "../layouts/Layout.astro"
+import "../styles/index.css"
+import { basicInfoSection } from "@/data/shopInfo"
+import Section from "@/layouts/Section.astro"
+import { foods, yakiton } from "@/data/menu.ts"
+import MenuCategory from "@/components/ui/MenuCategory.astro"
+import { drink, sake } from "@/data/menu.ts"
+import { MenuNav } from "@/components/ui/MenuNav.tsx"
+import SnsLinks from "@/components/sections/SnsLinks.astro"
 ---
 
 <Layout>
@@ -82,7 +81,7 @@ import SnsLinks from '@/components/sections/SnsLinks.astro'
                 <div class="menu-item">
                   <div class="menu-item-info">
                     <div class="menu-item-title">{item.name}</div>
-                    {typeof item.price === 'number' && (
+                    {typeof item.price === "number" && (
                       <div class="menu-item-price">{Math.floor(item.price * 1.1)}円（税込）</div>
                     )}
                     <div class="menu-item-description">{item.description}</div>
@@ -140,7 +139,7 @@ import SnsLinks from '@/components/sections/SnsLinks.astro'
     </Section>
   </main>
   <script is:inline>
-    const menuContent = document.getElementById('menu-content')
+    const menuContent = document.getElementById("menu-content")
     const menuContentHeight = menuContent.offsetHeight
     menuContent.style.height = `${menuContentHeight}px`
   </script>

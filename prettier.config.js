@@ -1,10 +1,10 @@
 const config = {
   semi: false,
-  singleQuote: true,
-  trailingComma: 'all',
+  singleQuote: false,
+  trailingComma: "all",
   printWidth: 100,
   tabWidth: 2,
-  plugins: ['prettier-plugin-astro'],
+  plugins: ["prettier-plugin-astro"],
 }
 
 export default config
