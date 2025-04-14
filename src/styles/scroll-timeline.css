@@ -1,0 +1,50 @@
+html {
+  scroll-timeline: --pageScroll block;
+  position: relative;
+}
+
+.scroll-menu {
+  position: sticky;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  z-index: 50;
+
+  /* アニメーションを設定 */
+  animation: sticky-animation linear;
+  animation-timeline: --pageScroll;
+  animation-range: contain;
+  background-color: #4a69bd;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.8rem;
+  text-align: center;
+  padding: 20px;
+}
+
+@keyframes sticky-animation {
+  0% {
+    background-color: #4a69bd;
+    transform: translateY(-50%) scale(0.8) rotate(-5deg);
+    border-radius: 10px;
+  }
+
+  50% {
+    background-color: #e84393;
+    transform: translateY(-50%) scale(1.2) rotate(0deg);
+    border-radius: 50%;
+  }
+
+  100% {
+    background-color: #6ab04c;
+    transform: translateY(-50%) scale(0.8) rotate(5deg);
+    border-radius: 10px;
+  }
+}

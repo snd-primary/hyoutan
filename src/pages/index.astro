@@ -1,14 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import '../styles/index.css'
+import '../styles/scroll-timeline.css'
 import { basicInfoSection } from '@/data/shopInfo'
 import Section from '@/layouts/Section.astro'
 import { foods, yakiton } from '@/data/menu.ts'
 import MenuCategory from '@/components/ui/MenuCategory.astro'
 import { drink, sake } from '@/data/menu.ts'
 import { MenuNav } from '@/components/ui/MenuNav.tsx'
-import { snsLinks } from '@/data/snslinks'
-import { Image } from 'astro:assets'
 import SnsLinks from '@/components/sections/SnsLinks.astro'
 ---
 
@@ -60,7 +59,7 @@ import SnsLinks from '@/components/sections/SnsLinks.astro'
     <!-- メニュー -->
     <Section id="menu" title="メニュー" class="@container">
       <MenuNav client:load />
-      <div class="menu-content">
+      <div id="menu-content" class="menu-content scroll-stretcher">
         <MenuCategory title={yakiton.title} id={`${yakiton.title}`}>
           <div class="menu-items">
             {
@@ -140,4 +139,9 @@ import SnsLinks from '@/components/sections/SnsLinks.astro'
       </div>
     </Section>
   </main>
+  <script is:inline>
+    const menuContent = document.getElementById('menu-content')
+    const menuContentHeight = menuContent.offsetHeight
+    menuContent.style.height = `${menuContentHeight}px`
+  </script>
 </Layout>
