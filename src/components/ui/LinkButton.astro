@@ -1,0 +1,41 @@
+---
+interface Props {
+  href: string
+  className?: string
+  text: string
+  variant?: "primary" | "secondary" | "accent" | "muted"
+  size?: "sm" | "md" | "lg"
+}
+
+const { href, className = "", text, variant = "primary", size = "md" } = Astro.props
+
+// カラーバリエーションに基づくクラス
+const variantClasses = {
+  primary: "bg-primary text-background border-primary-foreground/10 hover:bg-primary/80",
+  secondary:
+    "bg-secondary text-secondary-foreground border-secondary-foreground/10 hover:bg-secondary/80",
+  accent: "bg-accent text-accent-foreground border-accent-foreground/10 hover:bg-accent/80",
+  muted: "bg-muted text-muted-foreground border-muted-foreground/10 hover:bg-muted/80",
+}
+
+// サイズバリエーションに基づくクラス
+const sizeClasses = {
+  sm: "px-4 py-2 text-sm",
+  md: "px-7 py-3 text-base",
+  lg: "px-10 py-4 text-lg",
+}
+
+// 選択されたバリエーションとサイズのクラスを取得
+const variantClass = variantClasses[variant]
+const sizeClass = sizeClasses[size]
+---
+
+<a
+  href={href}
+  class={`rounded-3xl border-2 outline-1 transition ease-in-out w-full h-auto max-w-full
+  ${variantClass}
+  ${sizeClass}
+  ${className}
+  `}
+  >{text}
+</a>
