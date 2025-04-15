@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import "../styles/index.css"
+import "../styles/scroll-timeline.css"
 import { basicInfoSection } from "@/data/shopInfo"
 import Section from "@/layouts/Section.astro"
 import { foods, yakiton } from "@/data/menu.ts"
@@ -11,9 +12,9 @@ import SnsLinks from "@/components/sections/SnsLinks.astro"
 ---
 
 <Layout>
-  <main class="container mx-auto px-4">
+  <main class="container mx-auto grid justify-center grid-cols-1" style="padding: 0 !important;">
     <!-- 基本情報 -->
-    <Section id="info" title="基本情報">
+    <Section id="info" title="基本情報" isPaddingX={true}>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr items-start">
         {
           basicInfoSection.items.map((item) => (
@@ -31,7 +32,7 @@ import SnsLinks from "@/components/sections/SnsLinks.astro"
     </Section>
 
     <!-- アクセス -->
-    <Section id="access" title="アクセス">
+    <Section id="access" title="アクセス" isPaddingX={true}>
       <div class="info-grid">
         <div class="info-item">
           <h3>店舗情報</h3>
@@ -51,12 +52,12 @@ import SnsLinks from "@/components/sections/SnsLinks.astro"
     </Section>
 
     <!-- SNS -->
-    <Section id="sns" title="SNS LINK">
+    <Section id="sns" title="SNS LINK" isPaddingX={true}>
       <SnsLinks />
     </Section>
 
     <!-- メニュー -->
-    <Section id="menu" title="メニュー" class="">
+    <Section id="menu" title="メニュー" class="" isPaddingX={false}>
       <MenuNav client:load />
       <div id="menu-content" class="menu-content scroll-stretcher">
         <MenuCategory title={yakiton.title} id={`${yakiton.title}`}>

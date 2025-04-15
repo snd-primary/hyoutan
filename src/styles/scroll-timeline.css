@@ -1,37 +1,20 @@
-.scroll-menu {
+.sticky-menu {
   position: sticky;
-  top: 0;
-  left: 0;
+  top: 56px;
+  /*   left: 50%;
+  transform: translate(-50%, 0); */
 
-  width: fit-content;
   margin: 0 auto;
+  width: fit-content;
   display: grid;
+  grid-template-columns: 1fr;
   place-items: center;
   z-index: 50;
+  padding-bottom: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 12px;
+  background-color: #4a69bd;
 
   border-radius: 48px;
-
-  /* アニメーションを設定 */
-  animation-name: update-scroll-progress;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-  animation-timeline: view();
-  animation-range: exit;
-
-  background-color: #4a69bd;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px;
-}
-
-@keyframes update-scroll-progress {
-  from {
-    border-radius: 48px;
-    background-color: #4a69bd;
-  }
-  to {
-    border-radius: 0px;
-    background-color: red;
-  }
 }
