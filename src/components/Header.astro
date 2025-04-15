@@ -1,11 +1,21 @@
 ---
-import { navLinks } from '@/data/navlinks'
-import { MobileNav } from './ui/MobileNav.tsx'
+import { navLinks } from "@/data/navlinks"
+import { MobileNav } from "./ui/MobileNav.tsx"
+import hyoutanLogo from "../assets/logo/logo-hyoutan.png"
+import { Image } from "astro:assets"
 ---
 
 <header class="sticky top-0 left-0 w-full bg-foreground text-background py-4 shadow-md z-50">
   <div class="container mx-auto px-4 flex justify-between items-center">
-    <a href="/" class="flex items-center text-xl font-bold"> やきとん酒場 </a>
+    <a href="/" class="flex items-center gap-1">
+      <div class="aspect-square w-12 h-12">
+        <Image src={hyoutanLogo} alt="串とん亭日本酒居酒屋 三代目ひょうたんのロゴ" />
+      </div>
+      <div class="block">
+        <p class="text-sm">串とん亭日本酒居酒屋</p>
+        <p class="text-xl font-bold">三代目ひょうたん</p>
+      </div>
+    </a>
 
     <!-- isDesktop: ナビゲーションメニュー -->
     <nav id="nav-menu" class="hidden md:block">

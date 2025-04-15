@@ -28,8 +28,8 @@ export const MenuNav: React.FC = () => {
     setCurrentMenuKey(selectedKey)
   }
 
+  //GSAP ScrollTrigger
   const menuRef = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
     const element = menuRef.current
     if (!element) return
@@ -38,6 +38,8 @@ export const MenuNav: React.FC = () => {
       element,
       {
         borderRadius: 48,
+        width: "fit-content",
+        minWidth: "fit-content",
       },
       {
         borderRadius: 0,
@@ -45,10 +47,10 @@ export const MenuNav: React.FC = () => {
         transformOrigin: "center",
         scrollTrigger: {
           trigger: element,
-          start: "center 50%", // ビューポートの80%位置に要素の上端が来たら開始
-          end: "center 8%", // ビューポートの20%位置に要素の上端が来たら終了
+          start: "center 25%",
+          end: "center 8%",
           scrub: true,
-          markers: true,
+          // markers: true,
         },
       },
     )
@@ -62,13 +64,16 @@ export const MenuNav: React.FC = () => {
   }, [])
 
   return (
-    <div ref={menuRef} className={`sticky-menu`}>
-      <nav className="grid grid-cols-4 grid-rows-1 w-2xl bg-primary h-16 place-content-center place-items-center gap-0.5 p-0.5 rounded-4xl">
-        {menuEntries.map(([key, title], i) => (
+    <div
+      ref={menuRef}
+      className="sticky top-[56px] mx-auto p-2 z-50 bg-foreground flex justify-center"
+    >
+      <nav className="md:w-[480px] h-auto max-w-full grid grid-cols-[repeat(4,minmax(50px,1fr))] grid-rows-[40px] bg-slate-500 place-content-center place-items-center gap-0.5 p-0.5 rounded-4xl">
+        {menuEntries.map(([key, title]) => (
           <a
             key={key}
             href={`#${title}`}
-            className={`w-full h-full bg-accent grid place-content-center nth-[1]:rounded-s-4xl nth-last-[1]:rounded-e-4xl duration-150 ease-in-out transition-colors hover:bg-primary
+            className={`w-full h-full bg-accent grid place-content-center nth-[1]:rounded-s-4xl nth-last-[1]:rounded-e-4xl duration-150 ease-in-out transition-colors hover:bg-primary 
 						${currentMenuKey === key ? "bg-primary text-background" : "bg-accent hover:bg-primary active:bg-parimary"}
 						
 						`}
