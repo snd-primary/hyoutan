@@ -7,9 +7,24 @@ import MenuCategory from "@/components/ui/MenuCategory.astro"
 import { drink, sake } from "@/data/menu.ts"
 import { MenuNav } from "@/components/ui/MenuNav.tsx"
 import SnsLinks from "@/components/sections/SnsLinks.astro"
+import { getEntry } from "astro:content"
+
+//info.jsonを取得する
+const shopInfo = await getEntry("pageSections", "shopinfo")
 ---
 
 <Layout>
+  {
+    shopInfo?.data.blocks.map((block) => {
+      switch (block._type) {
+        case "keyValue":
+          return <h1>{block.key}</h1>
+        default:
+          console.warn("adsf")
+          return null
+      }
+    })
+  }
   <main class="container mx-auto grid justify-center grid-cols-1">
     <!-- お店のご紹介 -->
     <Section id="info" title="お店のご紹介" isPaddingX={true}>
