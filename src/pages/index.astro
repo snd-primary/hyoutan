@@ -12,9 +12,9 @@ import SnsLinks from "@/components/sections/SnsLinks.astro"
 ---
 
 <Layout>
-  <main class="container mx-auto grid justify-center grid-cols-1" style="padding: 0 !important;">
+  <main class="container mx-auto grid justify-center grid-cols-1">
     <!-- 基本情報 -->
-    <Section id="info" title="基本情報" isPaddingX={true}>
+    <Section id="info" title="お店のご紹介" isPaddingX={true}>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr items-start">
         {
           basicInfoSection.items.map((item) => (
@@ -33,12 +33,12 @@ import SnsLinks from "@/components/sections/SnsLinks.astro"
 
     <!-- アクセス -->
     <Section id="access" title="アクセス" isPaddingX={true}>
-      <div class="info-grid">
-        <div class="info-item">
-          <h3>店舗情報</h3>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
+        <div class="p-7 bg-background round-sm shadow">
+          <h3 class="text-xl mb-3.5 border-b-2 pb-2">店舗情報</h3>
           <p><strong>住所:</strong> 〒123-4567 東京都〇〇区△△町 0-0-0 □□ビル 1F</p>
           <p><strong>最寄り駅:</strong> 〇〇線△△駅から徒歩5分</p>
-          <div class="map-container">
+          <div class="mt-7 rounded-sm overflow-hidden h-80">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d260.9677655243392!2d133.33532607077836!3d35.43288113415353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f150!3m3!1m2!1s0x3556f785e9332955%3A0xe304ec2592395767!2z5Liy44Go44KT5Lqt5pel5pys6YWS6YWS5aC05LiJ5Luj55uu44Gy44KH44GG44Gf44KT!5e0!3m2!1sja!2sjp!4v1744096017161!5m2!1sja!2sjp"
               class="w-full h-full aspect-square md:aspect-video"

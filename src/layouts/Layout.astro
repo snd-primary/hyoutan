@@ -1,11 +1,11 @@
 ---
 import Header from "@/components/Header.astro"
 import "../styles/global.css"
-import "../styles/scroll-timeline.css"
 import Footer from "@/components/Footer.astro"
 import HeroSection from "@/components/sections/HeroSection.astro"
 import { ScrollHandler } from "@/components/ScrollHandler"
 import { siteUrl, siteMeta } from "@/data/site"
+import { Font } from "astro:assets"
 ---
 
 <!doctype html>
@@ -20,6 +20,9 @@ import { siteUrl, siteMeta } from "@/data/site"
     <meta property="og:locale" content="ja_JP" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <Font cssVariable="--webfont-1" preload />
+
     <meta name="generator" content={Astro.generator} />
     <title>{siteMeta.title}</title>
   </head>
@@ -31,14 +34,5 @@ import { siteUrl, siteMeta } from "@/data/site"
       <Footer />
     </div>
     <ScrollHandler menuSectionId="menu" offsetPx={160} client:load />
-
-    <style>
-      html,
-      body {
-        margin: 0;
-        width: 100%;
-        height: 100%;
-      }
-    </style>
   </body>
 </html>
