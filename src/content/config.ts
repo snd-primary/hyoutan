@@ -16,6 +16,13 @@ const contactBlockSchema = z.object({
   notes: z.string().optional(), // Markdownを想定
 })
 
+const linkBlockSchema = z.object({
+  _type: z.literal("link"),
+  label: z.string().optional(),
+  url: z.string().url().optional(),
+  ariaLabel: z.string().optional(),
+})
+
 const accessBlockSchema = z.object({
   _type: z.literal("access"),
   title: z.string().optional(),
@@ -46,20 +53,8 @@ const basicfoodListBlockSchema = z.object({
   items: z.array(
     z.object({
       name: z.string().describe("メニュー名"), // describeで説明を追加可能
-      price: z.number().int().positive(),
+      price: z.number().int().positive().optional(),
       description: z.string().optional(),
-    }),
-  ),
-})
-
-const yakitonListBlockSchema = z.object({
-  _type: z.literal("yakitonList"),
-  title: z.string().optional(),
-  items: z.array(
-    z.object({
-      name: z.string().describe("串の名前"),
-      description: z.string().describe("部位や特徴の説明"),
-      price: z.number().int().positive().optional().describe("価格（税込、設定があれば）"),
     }),
   ),
 })
@@ -119,6 +114,7 @@ const paragraphBlockSchema = z.object({
 const infoSectionBlockSchemaUnion = z.union([
   keyValueBlockSchema,
   contactBlockSchema,
+  linkBlockSchema,
   accessBlockSchema,
   detailListBlockSchema,
   paragraphBlockSchema,
@@ -138,7 +134,6 @@ const infoSectionCollecton = defineCollection({
 //メニューコレクションのUnionスキーマ
 const menuSectionBlockSchemaUnion = z.union([
   basicfoodListBlockSchema,
-  yakitonListBlockSchema,
   drinkListBlockSchema,
   sakeListBlockSchema,
 ])
@@ -147,7 +142,6 @@ const menuSectionBlockSchemaUnion = z.union([
 const menuSectionCollection = defineCollection({
   type: "data",
   schema: z.object({
-    title: z.string(),
     blocks: z.array(menuSectionBlockSchemaUnion),
   }),
 })
