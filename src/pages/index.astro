@@ -1,7 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro"
-import "../styles/index.css"
-import "../styles/scroll-timeline.css"
 import { basicInfoSection } from "@/data/shopInfo"
 import Section from "@/layouts/Section.astro"
 import { foods, yakiton } from "@/data/menu.ts"
@@ -13,9 +11,9 @@ import SnsLinks from "@/components/sections/SnsLinks.astro"
 
 <Layout>
   <main class="container mx-auto grid justify-center grid-cols-1">
-    <!-- 基本情報 -->
+    <!-- お店のご紹介 -->
     <Section id="info" title="お店のご紹介" isPaddingX={true}>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr items-start">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr items-start w-full h-auto">
         {
           basicInfoSection.items.map((item) => (
             <div class="w-full h-full bg-background border border-primary rounded-2xl p-4 grid grid-cols-1 gap-4">
@@ -33,7 +31,7 @@ import SnsLinks from "@/components/sections/SnsLinks.astro"
 
     <!-- アクセス -->
     <Section id="access" title="アクセス" isPaddingX={true}>
-      <div class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] w-full h-auto">
         <div class="p-7 bg-background round-sm shadow">
           <h3 class="text-xl mb-3.5 border-b-2 pb-2">店舗情報</h3>
           <p><strong>住所:</strong> 〒123-4567 東京都〇〇区△△町 0-0-0 □□ビル 1F</p>
@@ -57,17 +55,17 @@ import SnsLinks from "@/components/sections/SnsLinks.astro"
     </Section>
 
     <!-- メニュー -->
-    <Section id="menu" title="メニュー" class="" isPaddingX={false}>
+    <Section id="menu" title="メニュー" isPaddingX={false}>
       <MenuNav client:load />
-      <div id="menu-content" class="menu-content scroll-stretcher">
+      <div id="menu-content" class="scroll-pt-52 mx-auto w-full h-auto">
         <MenuCategory title={yakiton.title} id={`${yakiton.title}`}>
-          <div class="menu-items">
+          <div class="grid grid-cols-[auto-fill,minmax(250px,1fr)] gap-5">
             {
               yakiton.contents.map((item) => (
-                <div class="menu-item">
-                  <div class="menu-item-info">
-                    <div class="menu-item-title">{item.name}</div>
-                    <div class="menu-item-description">{item.description}</div>
+                <div class="bg-primary/20 rounded-sm overflow-hidden shadow">
+                  <div class="p-4">
+                    <div class="text-lg font-bold mb-1">{item.name}</div>
+                    <div class="text-gray-500">{item.description}</div>
                   </div>
                 </div>
               ))
@@ -76,16 +74,16 @@ import SnsLinks from "@/components/sections/SnsLinks.astro"
         </MenuCategory>
 
         <MenuCategory title={foods.title} id={`${foods.title}`}>
-          <div class="menu-items">
+          <div class="grid grid-cols-[auto-fill,minmax(250px,1fr)] gap-5">
             {
               foods.contents.map((item) => (
-                <div class="menu-item">
-                  <div class="menu-item-info">
-                    <div class="menu-item-title">{item.name}</div>
+                <div class="bg-primary/20 rounded-sm overflow-hidden shadow">
+                  <div class="p-4">
+                    <div class="text-lg font-bold mb-1">{item.name}</div>
                     {typeof item.price === "number" && (
-                      <div class="menu-item-price">{Math.floor(item.price * 1.1)}円（税込）</div>
+                      <div class="text-red-500">{Math.floor(item.price * 1.1)}円（税込）</div>
                     )}
-                    <div class="menu-item-description">{item.description}</div>
+                    <div class="text-gray-500">{item.description}</div>
                   </div>
                 </div>
               ))
@@ -94,11 +92,11 @@ import SnsLinks from "@/components/sections/SnsLinks.astro"
         </MenuCategory>
 
         <MenuCategory title={drink.title} id={`${drink.title}`}>
-          <div class="menu-items">
+          <div class="grid grid-cols-[auto-fill,minmax(250px,1fr)] gap-5">
             {
               drink.contents.map((content) => (
-                <div class="menu-item">
-                  <div class="menu-item-title">{content.category}</div>
+                <div class="bg-primary/20 rounded-sm overflow-hidden shadow">
+                  <div class="text-lg font-bold mb-1">{content.category}</div>
                   <ul>
                     {content.items.map((item) => (
                       <li>
@@ -114,13 +112,13 @@ import SnsLinks from "@/components/sections/SnsLinks.astro"
         </MenuCategory>
 
         <MenuCategory title={sake.title} id={`${sake.title}`}>
-          <div class="menu-items">
+          <div class="grid grid-cols-[auto-fill,minmax(250px,1fr)] gap-5">
             {
               sake.contents.map((content) => (
-                <div class="menu-item">
-                  <div class="menu-item-info">
-                    <div class="menu-item-title">{content.brand}</div>
-                    <div class="menu-item-title">{content.prefecture}</div>
+                <div class="bg-primary/20 rounded-sm overflow-hidden shadow">
+                  <div class="p-4">
+                    <div class="text-lg font-bold mb-1">{content.brand}</div>
+                    <div class="text-lg font-bold mb-1">{content.prefecture}</div>
                     <ul>
                       {content.items.map((item) => (
                         <li>
