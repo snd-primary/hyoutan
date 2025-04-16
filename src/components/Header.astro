@@ -1,5 +1,5 @@
 ---
-import { navLinks } from "@/data/navlinks"
+import { navLinks } from "@/data/site"
 import { MobileNav } from "./ui/MobileNav.tsx"
 import hyoutanLogo from "../assets/logo/logo-hyoutan.png"
 import { Image } from "astro:assets"
@@ -37,6 +37,6 @@ import { Image } from "astro:assets"
       </ul>
     </nav>
 
-    <MobileNav navLinks={navLinks} client:idle />
+    <MobileNav client:idle />
   </div>
 </header>

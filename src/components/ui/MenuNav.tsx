@@ -1,7 +1,6 @@
 import type React from "react"
-import { menuTitles } from "@/data/menu.ts"
 import { useEffect, useRef, useState } from "react"
-
+import { menuTitles } from "@/data/site.ts"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 

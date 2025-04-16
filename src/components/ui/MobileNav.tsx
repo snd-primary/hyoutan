@@ -1,11 +1,7 @@
-import type React from 'react'
-import type { NavLink } from '../Header.astro'
-import { useEffect, useState } from 'react'
-import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons'
-
-type Props = {
-  navLinks: NavLink[]
-}
+import type React from "react"
+import { navLinks } from "@/data/site.ts"
+import { useEffect, useState } from "react"
+import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons"
 
 type NavButtonProps = {
   onClick: () => void
@@ -25,7 +21,7 @@ const NavButton: React.FC<NavButtonProps> = ({ onClick, icon, ariaLabel }) => {
   )
 }
 
-export const MobileNav: React.FC<Props> = ({ navLinks }) => {
+export const MobileNav: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
 
   const openMenu = () => {
@@ -39,9 +35,9 @@ export const MobileNav: React.FC<Props> = ({ navLinks }) => {
   //メニューオープン時、body要素のスクロールを抑止
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.classList.add('overflow-hidden')
+      document.body.classList.add("overflow-hidden")
     } else {
-      document.body.classList.remove('overflow-hidden')
+      document.body.classList.remove("overflow-hidden")
     }
   }, [isMenuOpen])
 
@@ -49,7 +45,7 @@ export const MobileNav: React.FC<Props> = ({ navLinks }) => {
     <>
       <NavButton onClick={openMenu} ariaLabel="メニューを開く" icon={<HamburgerMenuIcon />} />
       <div
-        className={`fixed inset-0 bg-foreground/95 z-50 transform transition-transform duration-300 md:hidden  grid grid-cols-1 w-full h-dvh items-start ${isMenuOpen ? '' : '-translate-y-full'}`}
+        className={`fixed inset-0 bg-foreground/95 z-50 transform transition-transform duration-300 md:hidden  grid grid-cols-1 w-full h-dvh items-start ${isMenuOpen ? "" : "-translate-y-full"}`}
       >
         <div className="flex justify-between items-center mb-8 p-4">
           <a href="/" className="flex items-center text-xl font-bold">

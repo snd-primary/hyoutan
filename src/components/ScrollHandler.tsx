@@ -1,9 +1,14 @@
-import { menuTitles } from '@/data/menu.ts'
-import { useEffect } from 'react'
+import { useEffect } from "react"
 
 interface ScrollHandlerProps {
   menuSectionId: string
   offsetPx: number
+}
+const menuTitles = {
+  food: "#一品料理",
+  yakiton: "#やきとん",
+  sake: "#日本酒",
+  drink: "#ドリンク",
 }
 
 /**
@@ -19,16 +24,16 @@ export const ScrollHandler: React.FC<ScrollHandlerProps> = ({ menuSectionId, off
 
       // アンカー要素を探す（クリックされた要素自体、または親要素）
       let anchorElement: HTMLElement | null = target
-      while (anchorElement && anchorElement.tagName !== 'A') {
+      while (anchorElement && anchorElement.tagName !== "A") {
         anchorElement = anchorElement.parentElement
       }
 
       // アンカー要素が見つかった場合の処理
-      if (anchorElement && anchorElement.tagName === 'A') {
-        const href = anchorElement.getAttribute('href')
+      if (anchorElement && anchorElement.tagName === "A") {
+        const href = anchorElement.getAttribute("href")
 
         // hrefが'#'で始まるハッシュリンクの場合
-        if (href && href.startsWith('#')) {
+        if (href && href.startsWith("#")) {
           const hrefWithoutHash = href.substring(1) // '#' を除去
 
           // メニューセクションへのリンクかどうかをチェック
@@ -44,7 +49,7 @@ export const ScrollHandler: React.FC<ScrollHandlerProps> = ({ menuSectionId, off
               // スムーズスクロール
               window.scrollTo({
                 top: offsetPosition,
-                behavior: 'smooth',
+                behavior: "smooth",
               })
             }
           }
@@ -53,11 +58,11 @@ export const ScrollHandler: React.FC<ScrollHandlerProps> = ({ menuSectionId, off
     }
 
     // クリックイベントリスナーを設定
-    document.addEventListener('click', handleLinkClick)
+    document.addEventListener("click", handleLinkClick)
 
     // クリーンアップ関数
     return () => {
-      document.removeEventListener('click', handleLinkClick)
+      document.removeEventListener("click", handleLinkClick)
     }
   }, [menuSectionId, offsetPx])
 
