@@ -4,12 +4,14 @@ import { defineCollection, z } from "astro:content"
 // 情報コレクション ブロックタイプのスキーマを定義
 const keyValueBlockSchema = z.object({
   _type: z.literal("keyValue"),
+  order: z.number().positive(),
   key: z.string(),
   value: z.string(),
 })
 
 const contactBlockSchema = z.object({
   _type: z.literal("contact"),
+  order: z.number().positive(),
   title: z.string().optional(),
   phoneNumber: z.string().optional(),
   email: z.string().email().optional(), // Email形式バリデーション
@@ -18,6 +20,7 @@ const contactBlockSchema = z.object({
 
 const linkBlockSchema = z.object({
   _type: z.literal("link"),
+  order: z.number().positive(),
   label: z.string().optional(),
   url: z.string().url().optional(),
   ariaLabel: z.string().optional(),
@@ -25,6 +28,7 @@ const linkBlockSchema = z.object({
 
 const accessBlockSchema = z.object({
   _type: z.literal("access"),
+  order: z.number().positive(),
   title: z.string().optional(),
   address: z.string().optional(),
   stationInfo: z.string().optional(),
@@ -35,6 +39,7 @@ const accessBlockSchema = z.object({
 
 const detailListBlockSchema = z.object({
   _type: z.literal("detailList"),
+  order: z.number().positive(),
   title: z.string().optional(),
   items: z.array(
     z.object({
@@ -47,8 +52,9 @@ const detailListBlockSchema = z.object({
 // menuSectionsのスキーマを定義
 
 // 個々のフードアイテムのスキーマ
-const basicfoodListBlockSchema = z.object({
+const foodListBlockSchema = z.object({
   _type: z.literal("foodList"),
+  order: z.number().positive(),
   title: z.string().optional(),
   items: z.array(
     z.object({
@@ -79,6 +85,7 @@ const drinkCategorySchema = z.object({
 
 const drinkListBlockSchema = z.object({
   _type: z.literal("drinkList"),
+  order: z.number().positive(),
   title: z.string().optional(),
   items: z.array(drinkCategorySchema).nonempty().describe("ドリンクカテゴリのリスト"),
 })
@@ -101,12 +108,14 @@ const sakeBrandSchema = z.object({
 // sake コレクションのスキーマ
 const sakeListBlockSchema = z.object({
   _type: z.literal("sakeList"),
+  order: z.number().positive(),
   title: z.string().optional(),
   items: z.array(sakeBrandSchema).nonempty().describe("日本酒の銘柄リスト"),
 })
 
 const paragraphBlockSchema = z.object({
   _type: z.literal("paragraph"),
+  order: z.number().positive(),
   text: z.string(), // Markdownを想定
 })
 
@@ -123,30 +132,21 @@ const infoSectionBlockSchemaUnion = z.union([
 // 情報コレクションのスキーマ
 const infoSectionCollecton = defineCollection({
   type: "data", // APIからのJSONデータを想定
-  schema: z.object({
-    // `id` はファイル名 (slug) で管理するか、データに含めるか選択
-    // id: z.string(), // データに含める場合はコメント解除
-    title: z.string(),
-    blocks: z.array(infoSectionBlockSchemaUnion), // 異なるブロックタイプの配列
-  }),
+  schema: infoSectionBlockSchemaUnion,
 })
 
-//メニューコレクションのUnionスキーマ
 const menuSectionBlockSchemaUnion = z.union([
-  basicfoodListBlockSchema,
+  foodListBlockSchema,
   drinkListBlockSchema,
   sakeListBlockSchema,
 ])
 
-//メニューコレクションのスキーマ
 const menuSectionCollection = defineCollection({
   type: "data",
-  schema: z.object({
-    blocks: z.array(menuSectionBlockSchemaUnion),
-  }),
+  schema: menuSectionBlockSchemaUnion,
 })
 
 export const collections = {
-  infoSections: infoSectionCollecton,
+  infoSection: infoSectionCollecton,
   menuSection: menuSectionCollection,
 }

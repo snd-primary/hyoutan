@@ -1,0 +1,82 @@
+{
+  "_type": "foodList",
+  "title": "一品料理",
+  "order": 2,
+  "items": [
+    {
+      "name": "牛すじ煮込み",
+      "price": 600,
+      "description": ""
+    },
+    {
+      "name": "明太じゃがバター",
+      "price": 700,
+      "description": ""
+    },
+    {
+      "name": "スペアリブ",
+      "price": 600,
+      "description": ""
+    },
+    {
+      "name": "カキフライ",
+      "price": 750,
+      "description": ""
+    },
+    {
+      "name": "ぶりかま焼",
+      "price": 550,
+      "description": ""
+    },
+    {
+      "name": "海くらげ",
+      "price": 400,
+      "description": ""
+    },
+    {
+      "name": "豚足",
+      "price": 350,
+      "description": ""
+    },
+    {
+      "name": "豚たん唐揚げ",
+      "price": 750,
+      "description": ""
+    },
+    {
+      "name": "アジフライ",
+      "price": 700,
+      "description": ""
+    },
+    {
+      "name": "フライドポテト",
+      "price": 500,
+      "description": ""
+    },
+    {
+      "name": "Bigソーセージ",
+      "price": 330,
+      "description": ""
+    },
+    {
+      "name": "オムライス風",
+      "price": 1000,
+      "description": ""
+    },
+    {
+      "name": "おやじの気まぐれパスタor丼",
+      "price": 1000,
+      "description": ""
+    },
+    {
+      "name": "漬物盛り合わせ",
+      "price": 400,
+      "description": ""
+    },
+    {
+      "name": "おにぎり",
+      "price": 250,
+      "description": ""
+    }
+  ]
+}

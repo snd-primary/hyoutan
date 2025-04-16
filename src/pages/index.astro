@@ -1,45 +1,56 @@
 ---
 import Layout from "../layouts/Layout.astro"
-import { basicInfoSection } from "@/data/shopInfo"
 import Section from "@/layouts/Section.astro"
-import { foods, yakiton } from "@/data/menu.ts"
 import MenuCategory from "@/components/ui/MenuCategory.astro"
-import { drink, sake } from "@/data/menu.ts"
 import { MenuNav } from "@/components/ui/MenuNav.tsx"
 import SnsLinks from "@/components/sections/SnsLinks.astro"
-import { getEntry } from "astro:content"
+import { getCollection } from "astro:content"
 
-//info.jsonを取得する
-const shopInfo = await getEntry("infoSections", "shopinfo")
+const menuEntries = await getCollection("menuSection", ({ data }) => {
+  return true
+}).then((entries) => entries.sort((a, b) => a.data.order - b.data.order))
+
+const infoEntries = await getCollection("infoSection", ({ data }) => {
+  return true
+}).then((entries) => entries.sort((a, b) => a.data.order - b.data.order))
 ---
 
 <Layout>
-  <!--   {
-    shopInfo?.data.blocks.map((block) => {
-      switch (block._type) {
-        case "keyValue":
-          return <h1>{block.key}</h1>
-        default:
-          console.warn("adsf")
-          return null
-      }
-    })
-  } -->
   <main class="container mx-auto grid justify-center grid-cols-1">
-    <!-- お店のご紹介 -->
     <Section id="info" title="お店のご紹介" isPaddingX={true}>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr items-start w-full h-auto">
         {
-          basicInfoSection.items.map((item) => (
-            <div class="w-full h-full bg-background border border-primary rounded-2xl p-4 grid grid-cols-1 gap-4">
-              <h3 class="text-xl font-bold ">{item.title}</h3>
-              <ul>
-                {item.contents.map((content) => (
-                  <li set:html={content} />
-                ))}
-              </ul>
-            </div>
-          ))
+          infoEntries.map((entry) => {
+            switch (entry.data._type) {
+              case "detailList":
+                return (
+                  <div class="w-full h-full bg-background border border-primary rounded-2xl p-4 grid grid-cols-1 gap-4">
+                    <h3>{entry.data.title}</h3>
+                    <ul>
+                      {entry.data.items.map((item) => (
+                        <li>
+                          <span>{item.label}</span>
+                          <span>{item.detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              case "contact":
+                return (
+                  <div class="w-full h-full bg-background border border-primary rounded-2xl p-4 grid grid-cols-1 gap-4">
+                    <h3>{entry.data.title}</h3>
+                    <ul>
+                      <li>{entry.data.phoneNumber}</li>
+                      <li>{entry.data.email}</li>
+                    </ul>
+                  </div>
+                )
+              default:
+                console.warn("w")
+                return null
+            }
+          })
         }
       </div>
     </Section>
@@ -73,82 +84,70 @@ const shopInfo = await getEntry("infoSections", "shopinfo")
     <Section id="menu" title="メニュー" isPaddingX={false}>
       <MenuNav client:load />
       <div id="menu-content" class="scroll-pt-52 mx-auto w-full h-auto">
-        <MenuCategory title={yakiton.title} id={`${yakiton.title}`}>
-          <div class="grid grid-cols-[auto-fill,minmax(250px,1fr)] gap-5">
-            {
-              yakiton.contents.map((item) => (
-                <div class="bg-primary/20 rounded-sm overflow-hidden shadow">
-                  <div class="p-4">
-                    <div class="text-lg font-bold mb-1">{item.name}</div>
-                    <div class="text-gray-500">{item.description}</div>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </MenuCategory>
-
-        <MenuCategory title={foods.title} id={`${foods.title}`}>
-          <div class="grid grid-cols-[auto-fill,minmax(250px,1fr)] gap-5">
-            {
-              foods.contents.map((item) => (
-                <div class="bg-primary/20 rounded-sm overflow-hidden shadow">
-                  <div class="p-4">
-                    <div class="text-lg font-bold mb-1">{item.name}</div>
-                    {typeof item.price === "number" && (
-                      <div class="text-red-500">{Math.floor(item.price * 1.1)}円（税込）</div>
-                    )}
-                    <div class="text-gray-500">{item.description}</div>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </MenuCategory>
-
-        <MenuCategory title={drink.title} id={`${drink.title}`}>
-          <div class="grid grid-cols-[auto-fill,minmax(250px,1fr)] gap-5">
-            {
-              drink.contents.map((content) => (
-                <div class="bg-primary/20 rounded-sm overflow-hidden shadow">
-                  <div class="text-lg font-bold mb-1">{content.category}</div>
-                  <ul>
-                    {content.items.map((item) => (
-                      <li>
-                        <span>{item.name}</span>
-                        <span>{item.price}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))
-            }
-          </div>
-        </MenuCategory>
-
-        <MenuCategory title={sake.title} id={`${sake.title}`}>
-          <div class="grid grid-cols-[auto-fill,minmax(250px,1fr)] gap-5">
-            {
-              sake.contents.map((content) => (
-                <div class="bg-primary/20 rounded-sm overflow-hidden shadow">
-                  <div class="p-4">
-                    <div class="text-lg font-bold mb-1">{content.brand}</div>
-                    <div class="text-lg font-bold mb-1">{content.prefecture}</div>
-                    <ul>
-                      {content.items.map((item) => (
-                        <li>
-                          <span>{item.name}</span>
-                          <span>{item.price}</span>
-                          <span>{item.description}</span>
-                        </li>
+        {
+          menuEntries.map((entry) => {
+            switch (entry.data._type) {
+              case "foodList":
+                return (
+                  <MenuCategory title={entry.data.title} id="yakiton">
+                    <div class="grid grid-cols-[auto-fill,minmax(250px,1fr)] gap-5">
+                      {entry.data.items.map((item) => (
+                        <div class="bg-primary/20 rounded-sm overflow-hidden shadow">
+                          <div class="p-4">
+                            <div class="text-lg font-bold mb-1">{item.name}</div>
+                            <div class="text-gray-500">{item.description}</div>
+                          </div>
+                        </div>
                       ))}
-                    </ul>
-                  </div>
-                </div>
-              ))
+                    </div>
+                  </MenuCategory>
+                )
+              case "sakeList":
+                return (
+                  <MenuCategory title={entry.data.title} id="sake">
+                    <div class="grid grid-cols-[auto-fill,minmax(250px,1fr)] gap-5">
+                      {entry.data.items.map((item) => (
+                        <div class="bg-primary/20 rounded-sm overflow-hidden shadow">
+                          <div class="p-4">
+                            <div class="text-lg font-bold mb-1">{item.brand}</div>
+                            <div class="text-lg font-bold mb-1">{item.prefecture}</div>
+                            <ul>
+                              {item.items.map((item) => (
+                                <li>
+                                  <span>{item.name}</span>
+                                  <span>{item.price}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </MenuCategory>
+                )
+              case "drinkList":
+                return (
+                  <MenuCategory title={entry.data.title} id="drink">
+                    <div class="grid grid-cols-[auto-fill,minmax(250px,1fr)] gap-5">
+                      {entry.data.items.map((item) => (
+                        <div class="bg-primary/20 rounded-sm overflow-hidden shadow">
+                          <div class="text-lg font-bold mb-1">{item.category}</div>
+                          <ul>
+                            {item.items.map((item) => (
+                              <li>
+                                <span>{item.name}</span>
+                                <span>{item.price}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </MenuCategory>
+                )
             }
-          </div>
-        </MenuCategory>
+          })
+        }
       </div>
     </Section>
   </main>

@@ -1,0 +1,10 @@
+{
+  "_type": "detailList",
+  "order": 2,
+  "title": "ご利用",
+  "items": [
+    { "label": "席数", "detail": "カウンター7席、テーブル2組（4人掛け）" },
+    { "label": "喫煙", "detail": "全席喫煙可" },
+    { "label": "ご予算感", "detail": "3000~4000円程度" }
+  ]
+}
