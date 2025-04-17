@@ -6,77 +6,77 @@
     {
       "name": "牛すじ煮込み",
       "price": 600,
-      "description": ""
+      "description": "じっくり煮込んだとろとろの牛すじは、お酒との相性抜群です。"
     },
     {
       "name": "明太じゃがバター",
       "price": 700,
-      "description": ""
+      "description": "ほくほくのじゃがいもに、ピリ辛明太子とバターが絶妙にマッチ。"
     },
     {
       "name": "スペアリブ",
       "price": 600,
-      "description": ""
+      "description": "特製ダレに漬け込み、香ばしく焼き上げたジューシーな一品。"
     },
     {
       "name": "カキフライ",
       "price": 750,
-      "description": ""
+      "description": "サクサク衣の中から、濃厚でクリーミーな牡蠣の旨味が溢れます。"
     },
     {
       "name": "ぶりかま焼",
       "price": 550,
-      "description": ""
+      "description": "脂がたっぷり乗ったぶりかまを、塩焼きで香ばしく仕上げました。"
     },
     {
       "name": "海くらげ",
       "price": 400,
-      "description": ""
+      "description": "コリコリとした独特の食感が楽しい、さっぱりとした酢の物です。"
     },
     {
       "name": "豚足",
       "price": 350,
-      "description": ""
+      "description": "とろとろになるまで煮込んだ、コラーゲンたっぷりの豚足です。"
     },
     {
       "name": "豚たん唐揚げ",
       "price": 750,
-      "description": ""
+      "description": "コリっとした食感がたまらない、珍しい豚タンの唐揚げです。"
     },
     {
       "name": "アジフライ",
       "price": 700,
-      "description": ""
+      "description": "ふっくら肉厚なアジを、サクサクの衣で揚げた定番フライ。"
     },
     {
       "name": "フライドポテト",
       "price": 500,
-      "description": ""
+      "description": "揚げたて熱々！ついつい手が伸びる、みんな大好きフライドポテト。"
     },
     {
       "name": "Bigソーセージ",
       "price": 330,
-      "description": ""
+      "description": "パリッとジューシー！食べ応え満点の大きなソーセージです。"
     },
     {
       "name": "オムライス風",
       "price": 1000,
-      "description": ""
+      "description": "ふわとろ卵がケチャップライスを包む、どこか懐かしい味わい。"
     },
     {
       "name": "おやじの気まぐれパスタor丼",
       "price": 1000,
-      "description": ""
+      "description": "その日の仕入れ次第！何が出てくるかはお楽しみの気まぐれメニュー。"
     },
     {
       "name": "漬物盛り合わせ",
       "price": 400,
-      "description": ""
+      "description": "箸休めにぴったり。彩り豊かな季節の漬物をご用意しました。"
     },
     {
       "name": "おにぎり",
       "price": 250,
-      "description": ""
+      "description": "〆にどうぞ。ふっくら握りたてのシンプルなおにぎりです。"
     }
   ]
 }

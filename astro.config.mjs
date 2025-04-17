@@ -16,7 +16,7 @@ export default defineConfig({
     fonts: [
       {
         provider: fontProviders.google(),
-        name: "Mochiy Pop P One",
+        name: "Zen Antique Soft",
         cssVariable: "--webfont-1",
       },
     ],
