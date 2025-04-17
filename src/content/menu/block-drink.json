@@ -48,19 +48,6 @@
         { "name": "黒烏龍茶", "price": 400 },
         { "name": "緑茶", "price": 400 }
       ]
-    },
-    {
-      "category": "日本酒",
-      "items": [
-        { "name": "八海山", "price": 650 },
-        { "name": "大吟醸", "price": 1000 },
-        { "name": "越乃寒梅", "price": 1000 },
-        { "name": "三重", "price": 1000 },
-        { "name": "佐々木", "price": 650 },
-        { "name": "越の誉", "price": 550 },
-        { "name": "雪の舞", "price": 550 },
-        { "name": "獺祭", "price": 1200 }
-      ]
     }
   ]
 }
