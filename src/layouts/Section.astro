@@ -3,11 +3,11 @@
 interface Props {
   id: string
   title: string
-  class?: string
+  className?: string
   isPaddingX: boolean
 }
 
-const { id, title, class: className = "", isPaddingX = true } = Astro.props
+const { id, title, className: className = "", isPaddingX = true } = Astro.props
 ---
 
 <section

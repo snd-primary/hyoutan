@@ -190,48 +190,6 @@ const infoEntries = await getCollection("shopinfo", ({ data }) => {
     </Section>
 
     <Section id={sectionId.shopInfo} title="営業のご案内" isPaddingX={true}>
-      <!--       <div class="grid gap-2">
-        {
-          infoEntries.map((entry) => {
-            switch (entry.data._type) {
-              case "detailList":
-                return (
-                  <ul class="px-2 grid grid-cols-1 gap-2">
-                    {entry.data.items.map((item) => (
-                      <li>
-                        <div class="font-bold text-lg">{item.label}：</div>
-                        <div>{item.detail}</div>
-                      </li>
-                    ))}
-                  </ul>
-                )
-              case "access":
-                return (
-                  <div class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] w-full h-auto">
-                    <div class="p-7 bg-background round-sm shadow">
-                      <h3 class="text-xl mb-3.5 border-b-2 pb-2">{entry.data.title}</h3>
-                      <p>{entry.data.address}</p>
-                      <p>{entry.data.stationInfo}</p>
-                      <div class="mt-7 rounded-sm overflow-hidden h-80">
-                        <iframe
-                          src={entry.data.mapUrl}
-                          class="w-full h-full aspect-square md:aspect-video"
-                          style="border:0;"
-                          allowfullscreen=""
-                          loading="lazy"
-                          referrerpolicy="no-referrer-when-downgrade"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )
-              default:
-                console.warn("w")
-                return null
-            }
-          })
-        }
-      </div> -->
       <div class="w-full max-w-4xl mx-auto">
         {
           infoEntries.map((entry) => {
@@ -283,9 +241,4 @@ const infoEntries = await getCollection("shopinfo", ({ data }) => {
       </div>
     </Section>
   </main>
-  <script is:inline>
-    const menuContent = document.getElementById("menu-content")
-    const menuContentHeight = menuContent.offsetHeight
-    menuContent.style.height = `${menuContentHeight}px`
-  </script>
 </Layout>
