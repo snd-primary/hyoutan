@@ -1,10 +1,12 @@
 import type React from "react"
 import { useEffect, useRef, useState } from "react"
-import { menuTitles } from "@/data/site.ts"
+import { sectionId } from "@/data/site.ts"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
+
+const menuTitles = sectionId.menu.blocks
 
 // menuTitlesのキーの型を定義 (例: 'foods' | 'yakiton' | 'sake' | 'drink')
 type MenuKey = keyof typeof menuTitles

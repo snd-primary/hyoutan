@@ -16,7 +16,7 @@ export default defineConfig({
     fonts: [
       {
         provider: fontProviders.google(),
-        name: "Yuji Boku",
+        name: "Mochiy Pop P One",
         cssVariable: "--webfont-1",
       },
     ],

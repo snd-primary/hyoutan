@@ -4,6 +4,7 @@ interface ScrollHandlerProps {
   menuSectionId: string
   offsetPx: number
 }
+
 const menuTitles = {
   food: "#一品料理",
   yakiton: "#やきとん",

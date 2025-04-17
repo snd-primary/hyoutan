@@ -4,21 +4,29 @@ export interface NavLink {
   label?: string
 }
 
+export const sectionId = {
+  concept: "concept",
+  menu: {
+    title: "menu",
+    blocks: {
+      food: "一品料理",
+      yakiton: "やきとん",
+      sake: "日本酒",
+      drink: "ドリンク",
+    },
+  },
+  shopInfo: "shop-info",
+  sns: "sns",
+  cta: "cta",
+}
+
 // ヘッダーメニューのリンク
 export const navLinks: NavLink[] = [
-  { href: "#info", label: "基本情報" },
-  { href: "#menu", label: "メニュー" },
-  { href: "#access", label: "アクセス" },
-  { href: "tel:000-0000-0000", label: "ご予約" },
+  { href: `#${sectionId.concept}`, label: "コンセプト" },
+  { href: `#${sectionId.menu.title}`, label: "メニュー" },
+  { href: `#${sectionId.shopInfo}`, label: "店舗案内" },
+  { href: `#${sectionId.cta}`, label: "ご予約" },
 ]
-
-//メニューセクション内のページ内リンク
-export const menuTitles = {
-  food: "#一品料理",
-  yakiton: "#やきとん",
-  sake: "#日本酒",
-  drink: "#ドリンク",
-}
 
 //メタデータ
 export const siteMeta = {

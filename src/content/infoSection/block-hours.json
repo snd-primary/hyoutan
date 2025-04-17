@@ -1,9 +1,0 @@
-{
-  "_type": "detailList",
-  "order": 1,
-  "title": "営業案内",
-  "items": [
-    { "label": "営業時間", "detail": "平日: 17:00 - 23:30（L.O. 23:00）" },
-    { "label": "定休日", "detail": "毎週日曜日,祝日" }
-  ]
-}

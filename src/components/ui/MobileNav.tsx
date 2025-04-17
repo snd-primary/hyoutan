@@ -43,7 +43,11 @@ export const MobileNav: React.FC = () => {
 
   return (
     <>
-      <NavButton onClick={openMenu} ariaLabel="メニューを開く" icon={<HamburgerMenuIcon />} />
+      <NavButton
+        onClick={openMenu}
+        ariaLabel="メニューを開く"
+        icon={<HamburgerMenuIcon width={30} height={30} />}
+      />
       <div
         className={`fixed inset-0 bg-foreground/95 z-50 transform transition-transform duration-300 md:hidden  grid grid-cols-1 w-full h-dvh items-start ${isMenuOpen ? "" : "-translate-y-full"}`}
       >
@@ -51,7 +55,11 @@ export const MobileNav: React.FC = () => {
           <a href="/" className="flex items-center text-xl font-bold">
             やきとん酒場
           </a>
-          <NavButton onClick={closeMenu} ariaLabel="メニューを閉じる" icon={<Cross1Icon />} />
+          <NavButton
+            onClick={closeMenu}
+            ariaLabel="メニューを閉じる"
+            icon={<Cross1Icon width={30} height={30} />}
+          />
         </div>
         <div role="navigation" className="block">
           <ul className="block">
