@@ -12,6 +12,7 @@ import { MenuNav } from "@/components/ui/MenuNav.tsx"
 import instagramLogo from "../assets/logo/brandlogo-instagram.png"
 import lineLogo from "../assets/logo/brandlogo-line.png"
 import xLogo from "../assets/logo/brandlogo-x.png"
+import LINEBanner from "../assets/LINEbaner.png"
 
 import ExternalIcon from "../svg/external-icon.svg"
 
@@ -52,10 +53,10 @@ const infoEntries = await getCollection("shopinfo", ({ data }) => {
               case "foodList":
                 return (
                   <div
-                    class="w-full h-auto grid grid-cols-1 gap-8"
-                    id={sectionId.menu.blocks.yakiton}
+                    class="w-full h-auto grid grid-cols-1 gap-8 scroll-pt-72 scroll-smooth"
+                    id={entry.data.title}
                   >
-                    <h3 class="text-3xl font-webfont">{entry.data.title}</h3>
+                    <h3 class="text-3xl font-webfont pt-16">{entry.data.title}</h3>
                     {entry.data.title === "やきとん" ? (
                       <div class="border border-primary-foreground text-primary-foreground rounded-xl w-fit px-4 py-3 grid gap-1">
                         <p class="text-xl font-bold">やきとんは、全品390円（税込429円）</p>
@@ -83,7 +84,7 @@ const infoEntries = await getCollection("shopinfo", ({ data }) => {
               case "sakeList":
                 return (
                   <div class="w-full h-auto grid grid-cols-1 gap-8" id={sectionId.menu.blocks.sake}>
-                    <h3 class="text-3xl font-webfontp">{entry.data.title}</h3>
+                    <h3 class="text-3xl font-webfont pt-16">{entry.data.title}</h3>
                     <div class="border border-primary-foreground text-primary-foreground rounded-xl w-fit px-4 py-3 grid gap-2">
                       <p>
                         メニューに記載の日本酒は一部です。
@@ -133,7 +134,7 @@ const infoEntries = await getCollection("shopinfo", ({ data }) => {
                     class="w-full h-auto grid grid-cols-1 gap-8"
                     id={sectionId.menu.blocks.drink}
                   >
-                    <h3 class="text-3xl font-webfont">{entry.data.title}</h3>
+                    <h3 class="text-3xl font-webfont pt-16">{entry.data.title}</h3>
                     <div class="w-full h-auto grid grid-cols-1 md:grid-cols-2 place-items-start gap-4 md:gap-3 lg:gap-6 px-2">
                       {entry.data.items.map((category) => (
                         <div class="w-full h-full items-start grid content-start gap-2 border border-primary-foreground rounded-xl p-4">
@@ -162,34 +163,7 @@ const infoEntries = await getCollection("shopinfo", ({ data }) => {
         }
       </div>
     </Section>
-
-    <Section id={sectionId.sns} title="SNS" isPaddingX={true}>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-4">
-        {
-          snsLinks.map((link) => {
-            const logo = logoMap[link.name]
-
-            return (
-              <a
-                href={link.url}
-                class="sns-link flex flex-col items-center p-6 rounded-xl border-2 border-primary/30 hover:border-primary transition-all hover:shadow-md bg-background"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.ariaLabel}
-              >
-                <div class="sns-icon bg-primary/10 p-4 rounded-full mb-3">
-                  {logo && <Image src={logo} alt={link.ariaLabel} width={50} height={50} />}
-                </div>
-                <span class="sns-name text-lg font-webfont text-foreground">{link.name}</span>
-                <span class="text-sm text-muted-foreground mt-1">フォローする</span>
-              </a>
-            )
-          })
-        }
-      </div>
-    </Section>
-
-    <Section id={sectionId.shopInfo} title="営業のご案内" isPaddingX={true}>
+    <Section id={sectionId.shopInfo} title="店舗案内" isPaddingX={true}>
       <div class="w-full max-w-4xl mx-auto">
         {
           infoEntries.map((entry) => {
@@ -210,6 +184,32 @@ const infoEntries = await getCollection("shopinfo", ({ data }) => {
               case "access":
                 return (
                   <div class="rounded-xl overflow-hidden bg-background/80 ">
+                    <div class="p-6">
+                      <h3 class="text-2xl font-webfont mb-4 border-b border-primary-foreground/20 pb-2">
+                        ひょうたん公式SNS
+                      </h3>
+                      <div>
+                        <div>
+                          <a href={""} target="_blank" rel="noopener noreferrer" aria-label={""}>
+                            <Image
+                              class="border rounded-xl border-primary-foreground/50 "
+                              src={LINEBanner}
+                              alt={""}
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="p-6">
+                      <h3 class="text-2xl font-webfont mb-4 border-b border-primary-foreground/20 pb-2">
+                        ご予約
+                      </h3>
+                      <div>
+                        <div />
+                      </div>
+                    </div>
+
                     <div class="p-6">
                       <h3 class="text-2xl font-webfont mb-4 border-b border-primary-foreground/20 pb-2">
                         {entry.data.title}

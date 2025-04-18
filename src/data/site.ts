@@ -49,17 +49,17 @@ export interface SnsLink {
 export const snsLinks: SnsLink[] = [
   {
     name: "Instagram",
-    url: "https://www.instagram.com/yakiton-sakaba",
+    url: "https://www.instagram.com/sandaimehyoutan3/",
     ariaLabel: "三代目ひょうたん公式Instagram",
   },
   {
     name: "X",
-    url: "https://x.com/yakiton-sakaba",
+    url: "https://x.com/3Hyoutan",
     ariaLabel: "三代目ひょうたん公式X",
   },
   {
     name: "LINE",
-    url: "https://line.me/yakiton-sakaba",
+    url: "https://page.line.me/195sgdop?oat_content=url&openQrModal=true",
     ariaLabel: "三代目ひょうたん公式LINE",
   },
 ]

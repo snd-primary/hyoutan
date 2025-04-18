@@ -1,5 +1,5 @@
 import type React from "react"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { sectionId } from "@/data/site.ts"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -25,7 +25,7 @@ export const MenuNav: React.FC = () => {
     selectedKey: MenuKey,
     e: React.MouseEvent<HTMLAnchorElement>,
   ): void => {
-    e.preventDefault()
+    // e.preventDefault()
     setCurrentMenuKey(selectedKey)
 
     // スムーズスクロール実装
@@ -48,47 +48,12 @@ export const MenuNav: React.FC = () => {
   // GSAP ScrollTrigger
   const menuRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const element = menuRef.current
-    if (!element) return
-
-    const animation = gsap.fromTo(
-      element,
-      {
-        borderRadius: "9999px",
-        boxShadow: "0 0 0 rgba(0, 0, 0, 0.2)",
-        border: "1px solid oklch(0.421 0.095 57.708 / 0.3)",
-      },
-      {
-        borderRadius: "0",
-        width: "100vw",
-        marginLeft: "calc(50% - 50vw)",
-        marginRight: "calc(50% - 50vw)",
-        // background: "var(--foreground)",
-        scrollTrigger: {
-          trigger: element,
-          start: "top 35%",
-          end: "bottom 11%",
-          scrub: true,
-          markers: true,
-        },
-      },
-    )
-
-    // コンポーネントのアンマウント時にクリーンアップ
-    return () => {
-      if (animation.scrollTrigger) {
-        animation.scrollTrigger.kill()
-      }
-    }
-  }, [])
-
   return (
     <div
       ref={menuRef}
-      className={`sticky w-fit backdrop-blur-2xl top-[75px] mx-auto mb-10 py-3 px-4 z-50 transition-all duration-300   grid place-items-center justify-items-center`}
+      className={`sticky w-full  mx-auto md:w-fit backdrop-blur-2xl top-[9vh]  md:mb-10 py-3 px-4 z-50 transition-all duration-300 border border-primary-foreground/10 rounded-full grid place-items-center justify-items-center`}
     >
-      <nav className="max-w-3xl w-3xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <nav className="w-full md:w-3xl mx-auto grid grid-cols-4 md:grid-cols-4 gap-2 md:gap-4">
         {menuEntries.map(([key, title]) => (
           <a
             key={key}
