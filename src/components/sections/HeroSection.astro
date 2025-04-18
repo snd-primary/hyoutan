@@ -2,7 +2,7 @@
 import { Image } from "astro:assets"
 import heroImage from "../../assets/design/h_kv.png"
 import LinkButton from "../ui/LinkButton.astro"
-import { navLinks } from "@/data/site"
+import { sectionId } from "@/data/site"
 ---
 
 <!-- Heroビュー -->
@@ -20,8 +20,18 @@ import { navLinks } from "@/data/site"
       スタッフ一同お待ちしておりますので、どうぞ気兼ねなくご来店ください。
     </p> -->
     <div class="grid grid-cols-2 items-center gap-4 w-full px-4 md:w-4/5">
-      <LinkButton href="menu" text="メニューを見る" variant="primary" size="md" />
-      <LinkButton href={navLinks[3].href} text="ご予約" variant="secondary" size="md" />
+      <LinkButton
+        href={`#${sectionId.menu.title}`}
+        text="メニューを見る"
+        variant="primary"
+        size="md"
+      />
+      <LinkButton
+        href={`#${sectionId.shopInfo.blocks.contact}`}
+        text="ご予約"
+        variant="secondary"
+        size="md"
+      />
     </div>
   </div>
 </section>

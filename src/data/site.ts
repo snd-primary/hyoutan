@@ -5,9 +5,11 @@ export interface NavLink {
 }
 
 export const sectionId = {
-  concept: "concept",
+  concept: {
+    title: "三代目ひょうたんのコンセプト",
+  },
   menu: {
-    title: "menu",
+    title: "メニュー",
     blocks: {
       food: "一品料理",
       yakiton: "やきとん",
@@ -15,18 +17,15 @@ export const sectionId = {
       drink: "ドリンク",
     },
   },
-  shopInfo: "shop-info",
-  sns: "sns",
-  cta: "cta",
+  shopInfo: {
+    title: "店舗案内",
+    blocks: {
+      sns: "SNS",
+      contact: "ご予約・お問い合わせ",
+      access: "アクセス",
+    },
+  },
 }
-
-// ヘッダーメニューのリンク
-export const navLinks: NavLink[] = [
-  { href: `#${sectionId.concept}`, label: "コンセプト" },
-  { href: `#${sectionId.menu.title}`, label: "メニュー" },
-  { href: `#${sectionId.shopInfo}`, label: "店舗案内" },
-  { href: `#${sectionId.cta}`, label: "ご予約" },
-]
 
 //メタデータ
 export const siteMeta = {

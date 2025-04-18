@@ -59,7 +59,10 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-webfont: var(--webfont-1);
+  --font-webfont: var(--webfont-1, var(--font-default));
+  --font-default:
+    "Noto Sans JP", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo,
+    sans-serif;
 }
 
 @layer base {
@@ -74,9 +77,7 @@
 html,
 body {
   font-size: 15px;
-  font-family:
-    "Noto Sans JP", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo,
-    sans-serif;
+  font-family: var(--font-default);
   scroll-padding-top: 70px;
   scroll-behavior: smooth;
 }

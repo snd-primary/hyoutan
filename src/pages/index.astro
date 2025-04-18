@@ -15,6 +15,7 @@ import xLogo from "../assets/logo/brandlogo-x.png"
 import LINEBanner from "../assets/LINEbaner.png"
 
 import ExternalIcon from "../svg/external-icon.svg"
+import TelIcon from "../svg/tel-icon.svg"
 
 interface LogoMap {
   [key: string]: ImageMetadata
@@ -39,7 +40,7 @@ const infoEntries = await getCollection("shopinfo", ({ data }) => {
 
 <Layout>
   <main class="container mx-auto grid justify-center grid-cols-1">
-    <Section id={sectionId.concept} title="コンセプト" isPaddingX={true}>
+    <Section id={sectionId.concept.title} title="コンセプト" isPaddingX={true}>
       <div>koxnseputo</div>
     </Section>
 
@@ -163,14 +164,14 @@ const infoEntries = await getCollection("shopinfo", ({ data }) => {
         }
       </div>
     </Section>
-    <Section id={sectionId.shopInfo} title="店舗案内" isPaddingX={true}>
+    <Section id={sectionId.shopInfo.title} title="店舗案内" isPaddingX={true}>
       <div class="w-full max-w-4xl mx-auto">
         {
           infoEntries.map((entry) => {
             switch (entry.data._type) {
               case "detailList":
                 return (
-                  <div class="mb-8 rounded-xl p-6 bg-background/80 ">
+                  <div class="mb-8 rounded-xl p-6 bg-background/80">
                     <ul class="grid grid-cols-1 gap-4">
                       {entry.data.items.map((item) => (
                         <li class="flex flex-col md:flex-row md:items-center border-b border-primary-foreground/20 pb-4">
@@ -183,8 +184,8 @@ const infoEntries = await getCollection("shopinfo", ({ data }) => {
                 )
               case "access":
                 return (
-                  <div class="rounded-xl overflow-hidden bg-background/80 ">
-                    <div class="p-6">
+                  <div class="rounded-xl overflow-hidden bg-background/80">
+                    <div class="p-6" id={sectionId.shopInfo.blocks.sns}>
                       <h3 class="text-2xl font-webfont mb-4 border-b border-primary-foreground/20 pb-2">
                         ひょうたん公式SNS
                       </h3>
@@ -201,16 +202,28 @@ const infoEntries = await getCollection("shopinfo", ({ data }) => {
                       </div>
                     </div>
 
-                    <div class="p-6">
+                    <div class="p-6" id={sectionId.shopInfo.blocks.contact}>
                       <h3 class="text-2xl font-webfont mb-4 border-b border-primary-foreground/20 pb-2">
-                        ご予約
+                        ご予約・お問い合わせ
                       </h3>
-                      <div>
-                        <div />
+                      <div class="grid grid-cols-1 gap-4 justify-center text-center">
+                        <span>
+                          ご予約はお電話からお気軽にお問い合わせください！貸切・団体様でのご利用も大歓迎です。
+                        </span>
+                        <span>お電話受付時間：17:30～22:00（休業日を除く）</span>
+                        <div class="gap-4 grid w-full grid-cols-1 place-items-center place-content-center">
+                          <a
+                            class="w-fit justify-center px-5 py-4 border-2 border-primary-foreground/50 text-background bg-foreground/90 rounded-full drop-shadow-xl hover:opacity-80 transition text-3xl  font-bold flex items-center gap-2"
+                            href="tel:080-2887-3780"
+                          >
+                            <TelIcon width="30" height="30" />
+                            予約する（080-2887-3780）
+                          </a>
+                        </div>
                       </div>
                     </div>
 
-                    <div class="p-6">
+                    <div class="p-6" id={sectionId.shopInfo.blocks.access}>
                       <h3 class="text-2xl font-webfont mb-4 border-b border-primary-foreground/20 pb-2">
                         {entry.data.title}
                       </h3>

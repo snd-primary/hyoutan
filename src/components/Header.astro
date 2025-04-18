@@ -1,17 +1,19 @@
 ---
-import { navLinks } from "@/data/site"
 import { MobileNav } from "./ui/MobileNav.tsx"
 import hyoutanLogo from "../assets/logo/logo-hyoutan.png"
 import { Image } from "astro:assets"
+import { sectionId } from "@/data/site"
+
+const globalNavLinks = Object.entries(sectionId).map((i) => i[1].title)
 ---
 
 <header class="sticky top-0 left-0 w-full bg-foreground text-background py-4 shadow-md z-50">
-  <div class="flex items-center justify-between w-full px-4">
+  <div class="flex justify-between container items-center px-4 mx-auto">
     <a href="/" class="flex items-center gap-1">
       <div class="aspect-square w-12 h-12">
         <Image src={hyoutanLogo} alt="串とん亭日本酒居酒屋 三代目ひょうたんのロゴ" />
       </div>
-      <div class="block">
+      <div class="block font-webfont">
         <p class="text-sm">串とん亭日本酒居酒屋</p>
         <p class="text-xl font-bold">三代目ひょうたん</p>
       </div>
@@ -21,19 +23,29 @@ import { Image } from "astro:assets"
     <nav id="nav-menu" class="hidden md:block">
       <ul class="md:flex space-y-4 md:space-y-0 md:space-x-6">
         {
-          navLinks.map((item) => (
+          globalNavLinks.map((item) => (
             <li>
               <a
-                href={item.href}
+                href={`#${item}`}
                 class="block relative pb-1 hover:text-primary transition-colors duration-300 after:content-['']
             after:absolute after:w-0 after:h-0.5 after:bg-background after:bottom-0 after:left-0
             hover:after:w-full after:transition-all after:duration-300"
               >
-                {item.label}
+                {item}
               </a>
             </li>
           ))
         }
+        <li>
+          <a
+            href={`#${sectionId.shopInfo.blocks.contact}`}
+            class="block relative pb-1 hover:text-primary transition-colors duration-300 after:content-['']
+            after:absolute after:w-0 after:h-0.5 after:bg-background after:bottom-0 after:left-0
+            hover:after:w-full after:transition-all after:duration-300"
+          >
+            {sectionId.shopInfo.blocks.contact}
+          </a>
+        </li>
       </ul>
     </nav>
 

@@ -1,7 +1,9 @@
 import type React from "react"
-import { navLinks } from "@/data/site.ts"
 import { useEffect, useState } from "react"
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons"
+import { sectionId, siteMeta } from "@/data/site.ts"
+
+const globalNavLinks = Object.entries(sectionId).map((i) => i[1].title)
 
 type NavButtonProps = {
   onClick: () => void
@@ -49,12 +51,14 @@ export const MobileNav: React.FC = () => {
         icon={<HamburgerMenuIcon width={30} height={30} />}
       />
       <div
-        className={`fixed inset-0 bg-foreground/95 z-50 transform transition-transform duration-300 md:hidden  grid grid-cols-1 w-full h-dvh items-start ${isMenuOpen ? "" : "-translate-y-full"}`}
+        className={`fixed inset-0 bg-foreground/95 z-60 transform transition-transform duration-300 md:hidden  grid grid-cols-1 w-full h-dvh items-start ${isMenuOpen ? "" : "-translate-y-full"}`}
       >
         <div className="flex justify-between items-center mb-8 p-4">
-          <a href="/" className="flex items-center text-xl font-bold">
-            やきとん酒場
-          </a>
+          <span className="flex items-center  ">
+            {siteMeta.title}
+            <br />
+            公式ホームページメニュー
+          </span>
           <NavButton
             onClick={closeMenu}
             ariaLabel="メニューを閉じる"
@@ -62,14 +66,22 @@ export const MobileNav: React.FC = () => {
           />
         </div>
         <div role="navigation" className="block">
-          <ul className="block">
-            {navLinks.map((item) => (
-              <li key={item.label}>
-                <a href={item.href} className="block py-2 hover:text-primary transition-colors">
-                  {item.label}
+          <ul className="px-5">
+            {globalNavLinks.map((item) => (
+              <li key={item}>
+                <a href={`#${item}`} className="block  py-2 hover:text-primary transition-colors">
+                  {item}
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href={`#${sectionId.shopInfo.blocks.contact}`}
+                className="block py-2 hover:text-primary transition-colors"
+              >
+                {sectionId.shopInfo.blocks.contact}
+              </a>
+            </li>
           </ul>
         </div>
       </div>

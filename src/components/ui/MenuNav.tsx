@@ -51,7 +51,7 @@ export const MenuNav: React.FC = () => {
   return (
     <div
       ref={menuRef}
-      className={`sticky w-full  mx-auto md:w-fit backdrop-blur-2xl top-[9vh]  md:mb-10 py-3 px-4 z-50 transition-all duration-300 border border-primary-foreground/10 rounded-full grid place-items-center justify-items-center`}
+      className={`sticky w-full  mx-auto md:w-fit backdrop-blur-2xl top-[9vh]  md:mb-10 py-3 px-4 z-20 transition-all duration-300 border border-primary-foreground/10 rounded-full grid place-items-center justify-items-center`}
     >
       <nav className="w-full md:w-3xl mx-auto grid grid-cols-4 md:grid-cols-4 gap-2 md:gap-4">
         {menuEntries.map(([key, title]) => (
