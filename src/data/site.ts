@@ -6,13 +6,13 @@ export interface NavLink {
 
 export const sectionId = {
   concept: {
-    title: "三代目ひょうたんのコンセプト",
+    title: "店舗概要",
   },
   menu: {
     title: "メニュー",
     blocks: {
-      food: "一品料理",
       yakiton: "やきとん",
+      food: "一品料理",
       sake: "日本酒",
       drink: "ドリンク",
     },

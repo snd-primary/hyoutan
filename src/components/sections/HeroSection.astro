@@ -7,18 +7,11 @@ import { sectionId } from "@/data/site"
 
 <!-- Heroビュー -->
 <section
-  class="h-dvh flex items-center justify-center text-center text-foreground border-b border-foreground"
+  class="h-dvh flex items-center justify-center text-center bg-gray-200 text-foreground border-foreground"
 >
-  <div class="grid place-items-center place-content-center gap-28">
-    <Image src={heroImage} alt="heroImage" />
+  <div class="grid place-items-center place-content-center gap-28 z-10">
+    <Image src={heroImage} alt="heroImage" class="w-[90vw] max-w-4xl" />
 
-    <!--     <p>
-      串とんと日本酒の店「三代目ひょうたん」は珍しい豚の部位を使用した焼きとんと、店長自ら買付している入手困難な日本酒をお手頃価格で楽しめるのがウリの昭和居酒屋です。
-    </p>
-    <p>
-      一人でまったり飲みながら、気さくな店長との会話を楽しむも良し。お連れ様で盛り上がるもよし。
-      スタッフ一同お待ちしておりますので、どうぞ気兼ねなくご来店ください。
-    </p> -->
     <div class="grid grid-cols-2 items-center gap-4 w-full px-4 md:w-4/5">
       <LinkButton
         href={`#${sectionId.menu.title}`}
