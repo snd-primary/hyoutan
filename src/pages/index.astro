@@ -3,7 +3,7 @@ import type { ImageMetadata } from "astro"
 import { getCollection } from "astro:content"
 import { Image } from "astro:assets"
 
-import { snsLinks, sectionId } from "../data/site.ts"
+import { sectionId } from "../data/site.ts"
 
 import Layout from "../layouts/Layout.astro"
 import Section from "@/layouts/Section.astro"
@@ -13,6 +13,9 @@ import instagramLogo from "../assets/logo/brandlogo-instagram.png"
 import lineLogo from "../assets/logo/brandlogo-line.png"
 import xLogo from "../assets/logo/brandlogo-x.png"
 import LINEBanner from "../assets/LINEbaner.png"
+
+import ShopFacade from "../assets/design/location.jpg"
+import Sake from "../assets/design/sake/445593709.jpg"
 
 import ExternalIcon from "../svg/external-icon.svg"
 import TelIcon from "../svg/tel-icon.svg"
@@ -27,229 +30,339 @@ const logoMap: LogoMap = {
   LINE: lineLogo,
 }
 
-// メニューセクションのデータ 表示順をソート
-const menuEntries = await getCollection("menu", ({ data }) => {
-  return true
-}).then((entries) => entries.sort((a, b) => a.data.order - b.data.order))
+async function getSafeMenuEntries() {
+  try {
+    return await getCollection("menu").then((entries) =>
+      entries.sort((a, b) => a.data.order - b.data.order),
+    )
+  } catch (error) {
+    console.error("Error fetching menu collection", error)
+    return []
+  }
+}
 
-// 店舗案内セクションのデータ 表示順をソート
-const infoEntries = await getCollection("shopinfo", ({ data }) => {
-  return true
-}).then((entries) => entries.sort((a, b) => a.data.order - b.data.order))
+async function getSafeShopInfo() {
+  try {
+    return await getCollection("shopinfo").then((entries) =>
+      entries.sort((a, b) => a.data.order - b.data.order),
+    )
+  } catch (error) {
+    console.error("Error fetching shopinfo collection", error)
+    return []
+  }
+}
+
+const menuEntries = await getSafeMenuEntries()
+const infoEntries = await getSafeShopInfo()
 ---
 
 <Layout>
-  <main class="container mx-auto grid justify-center grid-cols-1">
-    <Section id={sectionId.concept.title} title="コンセプト" isPaddingX={true}>
-      <div>koxnseputo</div>
+  <main class="container leading-7 mx-auto grid justify-center grid-cols-1 px-3 md:px-0">
+    <Section id={sectionId.concept.title} customTitle={true}>
+      <h2 slot="customTitle" class="font-webfont text-3xl md:text-5xl tracking-wider w-full">
+        串とん亭日本酒居酒屋<br />三代目ひょうたん
+      </h2>
+      <div class="w-full max-w-7xl mx-auto grid grid-cols-1 gap-16 md:gap-1">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4 lg:gap-8 items-center md:grid-rows-1"
+        >
+          <!-- 左側：テキスト部分 -->
+          <div class="order-2 md:order-1 grid lg:gap-8 gap-4">
+            <h3 class="text-2xl md:text-3xl font-webfont text-primary-foreground">
+              米子で味わう<br />本格やきとんと厳選日本酒
+            </h3>
+            <div class="prose prose-lg leading-7 text-foreground grid gap-4">
+              <p class="leading-relaxed">
+                串とんと日本酒の店「三代目ひょうたん」は珍しい豚の部位を使用した焼きとんと、店長自ら買付している入手困難な日本酒をお手頃価格で楽しめるのがウリの昭和居酒屋です。
+              </p>
+              <p class="leading-relaxed">
+                一人でまったり飲みながら、気さくな店長との会話を楽しむも良し。お連れ様で盛り上がるもよし。
+                スタッフ一同お待ちしておりますので、どうぞ気兼ねなくご来店ください。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右側：画像部分 -->
+          <div
+            class="w-full h-full order-1 md:order-2 rounded-sm aspect-video md:aspect-[4/3] relative overflow-hidden"
+          >
+            <Image
+              class="object-cover w-full h-full saturate-30 rounded-full md:rounded-xl shadow-md border-8 border-foreground"
+              src={ShopFacade}
+              alt="三代目ひょうたん店舗外観"
+            />
+          </div>
+        </div>
+
+        <!-- 特徴セクション -->
+        <!-- 特徴セクション - 背景なしバージョン -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-1">
+          <!-- 特徴1：やきとん -->
+          <div class="grid grid-col-1 gap-2">
+            <div class="w-full h-full aspect-square rounded-sm overflow-hidden">
+              <Image class="object-cover w-full h-full saturate-30" src={Sake} alt="日本酒の画像" />
+            </div>
+
+            <div class="px-2">
+              <h3 class="font-webfont text-xl mb-3 text-primary-foreground">厳選やきとん</h3>
+
+              <p class="text-foreground/80">
+                珍しい部位を含む様々な豚の部位を、秘伝のタレと共に提供します。一本一本丁寧に焼き上げ、素材の旨味を最大限に引き出します。
+              </p>
+            </div>
+          </div>
+
+          <!-- 特徴2：日本酒 -->
+          <div class="grid grid-col-1 gap-2">
+            <div class="w-full h-full aspect-square rounded-sm overflow-hidden">
+              <Image class="object-cover w-full h-full saturate-30" src={Sake} alt="日本酒の画像" />
+            </div>
+
+            <div class="px-2">
+              <h3 class="font-webfont text-xl mb-3 text-primary-foreground">入手困難な日本酒</h3>
+              <p class="text-foreground/80">
+                店主自らが全国各地から買い付ける希少な日本酒の数々。季節限定品や入手困難な銘柄も、お手頃価格でお楽しみいただけます。
+              </p>
+            </div>
+          </div>
+
+          <!-- 特徴3：雰囲気 -->
+          <div class="grid grid-col-1 gap-2">
+            <div class="w-full h-full aspect-square rounded-sm overflow-hidden">
+              <Image class="object-cover w-full h-full saturate-30" src={Sake} alt="日本酒の画像" />
+            </div>
+
+            <div class="px-2">
+              <h3 class="font-webfont text-xl mb-3 text-primary-foreground">居心地の良い空間</h3>
+
+              <p class="text-foreground/80">
+                カウンターでの一人飲みも、テーブルでのグループ利用も気軽にどうぞ。老舗ならではの落ち着いた雰囲気で、ゆっくりとお酒と料理を堪能できます。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </Section>
 
-    <Section id={sectionId.menu.title} title="メニュー" isPaddingX={false}>
+    <Section id={sectionId.menu.title} title="メニュー">
       <MenuNav client:load />
-      <div id="menu-content" class="px-6 scroll-pt-52 w-full h-auto grid grid-cols-1 gap-12">
+      <div id="menu-content" class="scroll-pt-52 w-full h-auto grid grid-cols-1 gap-12">
         {
-          menuEntries.map((entry) => {
-            switch (entry.data._type) {
-              //やきとん、一品料理
-              case "foodList":
-                return (
-                  <div
-                    class="w-full h-auto grid grid-cols-1 gap-8 scroll-pt-72 scroll-smooth"
-                    id={entry.data.title}
-                  >
-                    <h3 class="text-3xl font-webfont pt-16">{entry.data.title}</h3>
-                    {entry.data.title === "やきとん" ? (
-                      <div class="border border-primary-foreground text-primary-foreground rounded-xl w-fit px-4 py-3 grid gap-1">
-                        <p class="text-xl font-bold">やきとんは、全品390円（税込429円）</p>
-                        <p>ご注文は1人前2本になります</p>
-                      </div>
-                    ) : null}
-                    <div class="w-full h-auto grid grid-cols-1 md:grid-cols-2 place-items-start gap-4 md:gap-3 lg:gap-6 px-2">
-                      {entry.data.items.map((item) => (
-                        <div class="w-full h-full items-start grid content-start gap-2 border border-primary-foreground bg-primary-foreground/1 rounded-xl p-4">
-                          <div class="w-full h-full items-center flex justify-between">
-                            <span class="text-xl font-webfont">{item.name}</span>
-                            {item.price ? (
-                              <span class=" font-webfont text-primary-foreground border rounded-xl pl-2 py-1">
-                                {Math.floor(item.price * 1.1)}円（税込み）
-                              </span>
-                            ) : null}
-                          </div>
-                          <p>{item.description}</p>
+          menuEntries.length > 0 ? (
+            menuEntries.map((entry) => {
+              switch (entry.data._type) {
+                //やきとん、一品料理
+                case "foodList":
+                  return (
+                    <div
+                      class="w-full h-auto grid grid-cols-1 gap-8 scroll-pt-72 scroll-smooth"
+                      id={entry.data.title}
+                    >
+                      <h3 class="text-3xl font-webfont pt-16">{entry.data.title}</h3>
+                      {entry.data.title === "やきとん" ? (
+                        <div class="border border-primary-foreground text-primary-foreground rounded-xl w-fit px-4 py-3 grid gap-1">
+                          <p class="text-xl font-bold">やきとんは、全品390円（税込429円）</p>
+                          <p>ご注文は1人前2本になります</p>
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                )
-              //日本酒
-              case "sakeList":
-                return (
-                  <div class="w-full h-auto grid grid-cols-1 gap-8" id={sectionId.menu.blocks.sake}>
-                    <h3 class="text-3xl font-webfont pt-16">{entry.data.title}</h3>
-                    <div class="border border-primary-foreground text-primary-foreground rounded-xl w-fit px-4 py-3 grid gap-2">
-                      <p>
-                        メニューに記載の日本酒は一部です。
-                        <br />
-                        店主が全国各地から厳選した季節限定酒や入手困難な希少酒も常時取り揃えておりますので、お気軽に店員までお尋ねください。
-                      </p>
-                      <span class="flex items-center gap-2">
-                        <p>日本酒の入荷情報はInstagramをCheck!! →</p>
-                        <a
-                          href=""
-                          rel="noopener noreferrer"
-                          class="underline flex items-center gap-1 text-primary font-bold"
-                        >
-                          <span>Instagram</span>
-                          <ExternalIcon />
-                        </a>
-                      </span>
-                    </div>
-                    <div class="w-full h-auto grid grid-cols-1 md:grid-cols-2 place-items-start gap-4 md:gap-3 lg:gap-6 px-2">
-                      {entry.data.items.map((item) => (
-                        <div class="w-full h-full items-start grid content-start gap-2 border border-primary-foreground rounded-xl p-4">
-                          <div class="w-full h-full items-center flex justify-between">
-                            <span class="text-xl font-webfont">{item.brand}</span>
-                            <span class="font-webfont text-primary-foreground border rounded-xl px-2 py-1">
-                              {item.prefecture}
-                            </span>
-                          </div>
-                          <ul class="grid grid-cols-1 gap-2 mt-2">
-                            {item.items.map((sake) => (
-                              <li class="flex justify-between items-center py-1 border-b border-primary-foreground/20">
-                                <span>{sake.name}</span>
-                                <span class="font-webfont text-primary-foreground">
-                                  {Math.floor(sake.price * 1.1)}円（税込み）
+                      ) : null}
+                      <div class="w-full h-auto grid grid-cols-1 md:grid-cols-2 place-items-start gap-4 md:gap-3 lg:gap-6 px-2">
+                        {entry.data.items.map((item) => (
+                          <div class="w-full h-full items-start grid content-start gap-2 border border-primary-foreground bg-primary-foreground/1 rounded-xl p-4">
+                            <div class="w-full h-full items-center flex justify-between">
+                              <span class="text-xl font-webfont">{item.name}</span>
+                              {item.price ? (
+                                <span class=" font-webfont text-primary-foreground border rounded-xl pl-2 py-1">
+                                  {Math.floor(item.price * 1.1)}円（税込み）
                                 </span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )
-              //ドリンク
-              case "drinkList":
-                return (
-                  <div
-                    class="w-full h-auto grid grid-cols-1 gap-8"
-                    id={sectionId.menu.blocks.drink}
-                  >
-                    <h3 class="text-3xl font-webfont pt-16">{entry.data.title}</h3>
-                    <div class="w-full h-auto grid grid-cols-1 md:grid-cols-2 place-items-start gap-4 md:gap-3 lg:gap-6 px-2">
-                      {entry.data.items.map((category) => (
-                        <div class="w-full h-full items-start grid content-start gap-2 border border-primary-foreground rounded-xl p-4">
-                          <div class="w-full h-full items-center flex justify-between">
-                            <span class="text-xl font-webfont">{category.category}</span>
+                              ) : null}
+                            </div>
+                            <p>{item.description}</p>
                           </div>
-                          <ul class="grid grid-cols-1 gap-2 mt-2">
-                            {category.items.map((drink) => (
-                              <li class="flex justify-between items-center py-1 border-b border-primary-foreground/20">
-                                <span>{drink.name}</span>
-                                {drink.price && (
-                                  <span class="font-webfont text-primary-foreground">
-                                    {Math.floor(drink.price * 1.1)}円（税込み）
-                                  </span>
-                                )}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )
-            }
-          })
+                  )
+                //日本酒
+                case "sakeList":
+                  return (
+                    <div
+                      class="w-full h-auto grid grid-cols-1 gap-8"
+                      id={sectionId.menu.blocks.sake}
+                    >
+                      <h3 class="text-3xl font-webfont pt-16">{entry.data.title}</h3>
+                      <div class="border border-primary-foreground text-primary-foreground rounded-xl w-fit px-4 py-3 grid gap-2">
+                        <p>
+                          メニューに記載の日本酒は一部です。
+                          <br />
+                          店主が全国各地から厳選した季節限定酒や入手困難な希少酒も常時取り揃えておりますので、お気軽に店員までお尋ねください。
+                        </p>
+                        <span class="flex items-center gap-2">
+                          <p>日本酒の入荷情報はInstagramをCheck!! →</p>
+                          <a
+                            href=""
+                            rel="noopener noreferrer"
+                            class="underline flex items-center gap-1 text-primary font-bold"
+                          >
+                            <span>Instagram</span>
+                            <ExternalIcon />
+                          </a>
+                        </span>
+                      </div>
+                      <div class="w-full h-auto grid grid-cols-1 md:grid-cols-2 place-items-start gap-4 md:gap-3 lg:gap-6 px-2">
+                        {entry.data.items.map((item) => (
+                          <div class="w-full h-full items-start grid content-start gap-2 border border-primary-foreground rounded-xl p-4">
+                            <div class="w-full h-full items-center flex justify-between">
+                              <span class="text-xl font-webfont">{item.brand}</span>
+                              <span class="font-webfont text-primary-foreground border rounded-xl px-2 py-1">
+                                {item.prefecture}
+                              </span>
+                            </div>
+                            <ul class="grid grid-cols-1 gap-2 mt-2">
+                              {item.items.map((sake) => (
+                                <li class="flex justify-between items-center py-1 border-b border-primary-foreground/20">
+                                  <span>{sake.name}</span>
+                                  <span class="font-webfont text-primary-foreground">
+                                    {Math.floor(sake.price * 1.1)}円（税込み）
+                                  </span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                //ドリンク
+                case "drinkList":
+                  return (
+                    <div
+                      class="w-full h-auto grid grid-cols-1 gap-8"
+                      id={sectionId.menu.blocks.drink}
+                    >
+                      <h3 class="text-3xl font-webfont pt-16">{entry.data.title}</h3>
+                      <div class="w-full h-auto grid grid-cols-1 md:grid-cols-2 place-items-start gap-4 md:gap-3 lg:gap-6 px-2">
+                        {entry.data.items.map((category) => (
+                          <div class="w-full h-full items-start grid content-start gap-2 border border-primary-foreground rounded-xl p-4">
+                            <div class="w-full h-full items-center flex justify-between">
+                              <span class="text-xl font-webfont">{category.category}</span>
+                            </div>
+                            <ul class="grid grid-cols-1 gap-2 mt-2">
+                              {category.items.map((drink) => (
+                                <li class="flex justify-between items-center py-1 border-b border-primary-foreground/20">
+                                  <span>{drink.name}</span>
+                                  {drink.price && (
+                                    <span class="font-webfont text-primary-foreground">
+                                      {Math.floor(drink.price * 1.1)}円（税込み）
+                                    </span>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )
+              }
+            })
+          ) : (
+            <div class="p-4 text-center">
+              <p>メニューを読み込み中...</p>
+            </div>
+          )
         }
       </div>
     </Section>
-    <Section id={sectionId.shopInfo.title} title="店舗案内" isPaddingX={true}>
-      <div class="w-full max-w-4xl mx-auto">
+    <Section id={sectionId.shopInfo.title} title="店舗案内">
+      <div class="w-full mx-auto grid">
         {
-          infoEntries.map((entry) => {
-            switch (entry.data._type) {
-              case "detailList":
-                return (
-                  <div class="mb-8 rounded-xl p-6 bg-background/80">
-                    <ul class="grid grid-cols-1 gap-4">
-                      {entry.data.items.map((item) => (
-                        <li class="flex flex-col md:flex-row md:items-center border-b border-primary-foreground/20 pb-4">
-                          <div class=" text-lg md:w-1/3">{item.label}</div>
-                          <div class="md:w-2/3 mt-1 md:mt-0">{item.detail}</div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )
-              case "access":
-                return (
-                  <div class="rounded-xl overflow-hidden bg-background/80">
-                    <div class="p-6" id={sectionId.shopInfo.blocks.sns}>
-                      <h3 class="text-2xl font-webfont mb-4 border-b border-primary-foreground/20 pb-2">
-                        ひょうたん公式SNS
-                      </h3>
-                      <div>
+          infoEntries.length > 0 ? (
+            infoEntries.map((entry) => {
+              switch (entry.data._type) {
+                case "detailList":
+                  return (
+                    <div class="mb-8 rounded-xl lg:p-6 bg-background/80">
+                      <ul class="grid grid-cols-1 gap-4">
+                        {entry.data.items.map((item) => (
+                          <li class="flex flex-col md:flex-row md:items-center border-b border-primary-foreground/20 pb-4">
+                            <div class=" text-lg md:w-1/3">{item.label}</div>
+                            <div class="md:w-2/3 mt-1 md:mt-0">{item.detail}</div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )
+                case "access":
+                  return (
+                    <div class="grid grid-cols-1 gap-16 pt-16">
+                      <div id={sectionId.shopInfo.blocks.sns}>
+                        <h3 class="text-2xl font-webfont mb-4 border-b border-primary-foreground/20 pb-2">
+                          ひょうたん公式SNS
+                        </h3>
                         <div>
-                          <a href={""} target="_blank" rel="noopener noreferrer" aria-label={""}>
-                            <Image
-                              class="border rounded-xl border-primary-foreground/50 "
-                              src={LINEBanner}
-                              alt={""}
-                            />
-                          </a>
+                          <div>
+                            <a href={""} target="_blank" rel="noopener noreferrer" aria-label={""}>
+                              <Image
+                                class="border rounded-xl border-primary-foreground/50 "
+                                src={LINEBanner}
+                                alt={""}
+                              />
+                            </a>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div class="p-6" id={sectionId.shopInfo.blocks.contact}>
-                      <h3 class="text-2xl font-webfont mb-4 border-b border-primary-foreground/20 pb-2">
-                        ご予約・お問い合わせ
-                      </h3>
-                      <div class="grid grid-cols-1 gap-4 justify-center text-center">
-                        <span>
-                          ご予約はお電話からお気軽にお問い合わせください！貸切・団体様でのご利用も大歓迎です。
-                        </span>
-                        <span>お電話受付時間：17:30～22:00（休業日を除く）</span>
-                        <div class="gap-4 grid w-full grid-cols-1 place-items-center place-content-center">
-                          <a
-                            class="w-fit justify-center px-5 py-4 border-2 border-primary-foreground/50 text-background bg-foreground/90 rounded-full drop-shadow-xl hover:opacity-80 transition text-3xl  font-bold flex items-center gap-2"
-                            href="tel:080-2887-3780"
-                          >
-                            <TelIcon width="30" height="30" />
-                            予約する（080-2887-3780）
-                          </a>
+                      <div id={sectionId.shopInfo.blocks.contact}>
+                        <h3 class="text-2xl font-webfont mb-4 border-b border-primary-foreground/20 pb-2">
+                          ご予約・お問い合わせ
+                        </h3>
+                        <div class="grid grid-cols-1 gap-4 justify-center text-center">
+                          <span>
+                            ご予約はお電話からお気軽にお問い合わせください！貸切・団体様でのご利用も大歓迎です。
+                          </span>
+                          <span>お電話受付時間：17:30～22:00（休業日を除く）</span>
+                          <div class="gap-4 grid w-full grid-cols-1 place-items-center place-content-center">
+                            <a
+                              class="w-fit justify-center px-5 py-4 border-2 border-primary-foreground/50 text-background bg-foreground/90 rounded-full drop-shadow-xl hover:opacity-80 transition text-xl md:text-3xl  font-bold flex items-center gap-2"
+                              href="tel:080-2887-3780"
+                            >
+                              <TelIcon width="30" height="30" />
+                              予約する（080-2887-3780）
+                            </a>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div class="p-6" id={sectionId.shopInfo.blocks.access}>
-                      <h3 class="text-2xl font-webfont mb-4 border-b border-primary-foreground/20 pb-2">
-                        {entry.data.title}
-                      </h3>
-                      <div class="mb-4">
-                        <p class="mb-2">{entry.data.address}</p>
-                        <p class="whitespace-pre-line text-muted-foreground">
+                      <div class="grid grid-cols-1 gap-4" id={sectionId.shopInfo.blocks.access}>
+                        <h3 class="text-2xl font-webfont mb-4 border-b border-primary-foreground/20 pb-2">
+                          {entry.data.title}
+                        </h3>
+                        <p>{entry.data.address}</p>
+                        <p class="whitespace-pre-line border p-2 rounded-xl  ">
                           {entry.data.stationInfo}
                         </p>
+                        <div class="w-full h-80 rounded-b-xl overflow-hidden">
+                          <iframe
+                            src={entry.data.mapUrl}
+                            class="w-full h-full"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                          />
+                        </div>
                       </div>
                     </div>
-                    <div class="w-full h-80 rounded-b-xl overflow-hidden">
-                      <iframe
-                        src={entry.data.mapUrl}
-                        class="w-full h-full"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                      />
-                    </div>
-                  </div>
-                )
-              default:
-                return null
-            }
-          })
+                  )
+                default:
+                  return null
+              }
+            })
+          ) : (
+            <div class="p-4 text-center">
+              <p>店舗情報を読み込み中...</p>
+            </div>
+          )
         }
       </div>
     </Section>

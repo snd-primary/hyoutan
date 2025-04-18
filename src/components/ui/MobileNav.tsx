@@ -43,6 +43,11 @@ export const MobileNav: React.FC = () => {
     }
   }, [isMenuOpen])
 
+  // リンククリック時にメニューを閉じるためのハンドラー
+  const handleLinkClick = () => {
+    closeMenu()
+  }
+
   return (
     <>
       <NavButton
@@ -69,7 +74,11 @@ export const MobileNav: React.FC = () => {
           <ul className="px-5">
             {globalNavLinks.map((item) => (
               <li key={item}>
-                <a href={`#${item}`} className="block  py-2 hover:text-primary transition-colors">
+                <a
+                  href={`#${item}`}
+                  className="block  py-2 hover:text-primary transition-colors"
+                  onClick={handleLinkClick}
+                >
                   {item}
                 </a>
               </li>
@@ -78,6 +87,7 @@ export const MobileNav: React.FC = () => {
               <a
                 href={`#${sectionId.shopInfo.blocks.contact}`}
                 className="block py-2 hover:text-primary transition-colors"
+                onClick={handleLinkClick}
               >
                 {sectionId.shopInfo.blocks.contact}
               </a>

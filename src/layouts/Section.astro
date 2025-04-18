@@ -2,22 +2,25 @@
 // Section.astro
 interface Props {
   id: string
-  title: string
-  className?: string
-  isPaddingX: boolean
+  title?: string
+  customTitle?: boolean
 }
 
-const { id, title, className: className = "", isPaddingX = true } = Astro.props
+const { id, title, customTitle = false } = Astro.props
 ---
 
 <section
   id={id}
-  class={`w-full max-w-full h-max my-8 scroll-pt-72 scroll-smooth ${className} grid grid-cols-1 justify-center gap-8`}
+  class={`w-full max-w-full h-max my-8 scroll-pt-72 scroll-smooth grid grid-cols-1 justify-items-center justify-center gap-8`}
 >
-  <h2 class="font-webfont text-5xl tracking-wider">
-    {title}
-  </h2>
-  <div class={`section-content ${isPaddingX ? "px-4" : ""}`}>
+  {
+    customTitle ? (
+      <slot name="customTitle" />
+    ) : (
+      <h2 class="font-webfont text-3xl md:text-5xl tracking-wider w-full">{title}</h2>
+    )
+  }
+  <div class={`section-content w-full max-w-7xl px-1`}>
     <slot />
   </div>
 </section>
